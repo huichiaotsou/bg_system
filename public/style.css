@@ -4,6 +4,14 @@ body {
     margin: 20px;
   }
   
+  /* Add media query for smaller screens */
+@media (max-width: 600px) {
+    form {
+      margin: 10px;
+    }
+  }
+
+  
   h1,h2 {
     text-align: center;
   }
