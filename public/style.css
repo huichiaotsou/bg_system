@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: larger;
+    margin: 20px;
+  }
+  
+  h1,h2 {
+    text-align: center;
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="tel"] {
+    border-radius: 10px;
+    line-height: 2;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  .radio-group {
+    line-height: 1.5;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  input[type="submit"] {
+    border-radius: 10px;
+    width: 70%;
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto 0;
+  }
+  
+  .google-login {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .google-btn {
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #dd4b39;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .radio-group {
+    margin-bottom: 10px;
+  }
+  
+  .checkbox {
+    margin-bottom: 10px;
+  }
+  
+  .checkbox label {
+    display: inline;
+    margin-left: 5px;
+  }
+  
