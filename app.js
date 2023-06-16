@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define routes and handle requests
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "register", "register.html"));
 });
 
 app.post("/form", postForm);
