@@ -4,7 +4,7 @@ require("dotenv");
 const bodyParser = require("body-parser");
 
 const { SERVER_PORT } = process.env;
-const { postForm } = require("./server/controller/form");
+const { postUserData } = require("./server/controller/form");
 const app = express();
 
 // Set the public folder as the static directory
@@ -17,7 +17,7 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register", "register.html"));
 });
 
-app.post("/register_form", postForm);
+app.post("/post_user_data", postUserData);
 
 // Start the server
 app.listen(SERVER_PORT, () => {

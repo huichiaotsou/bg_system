@@ -1,7 +1,7 @@
-const postForm = async (req, res, next) => {
-  const { name, phone, email, location, saveDate } = req.body;
+const postUserData = async (req, res, next) => {
+  const { name, phone, email } = req.body;
 };
 
 module.exports = {
-  postForm,
+  postUserData,
 };
