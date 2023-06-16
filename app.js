@@ -17,7 +17,7 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register", "register.html"));
 });
 
-app.post("/form", postForm);
+app.post("/register_form", postForm);
 
 // Start the server
 app.listen(SERVER_PORT, () => {

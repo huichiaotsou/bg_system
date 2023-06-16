@@ -7,8 +7,6 @@ form.addEventListener("submit", function (event) {
   var name = document.getElementById("name").value;
   var phone = document.getElementById("phone").value;
   var email = document.getElementById("email").value;
-  var location = document.querySelector('input[name="location"]:checked').value;
-  var saveData = document.getElementById("save-data").checked;
 
   // If saveData == true
 
@@ -17,13 +15,11 @@ form.addEventListener("submit", function (event) {
     name: name,
     phone: phone,
     email: email,
-    location: location,
-    saveData: saveData,
   };
 
   // Send post request to the server
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/form");
+  xhr.open("POST", "/register_form");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify(formData));
 
