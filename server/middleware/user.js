@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const DB = require("../model/db_methods");
 
-const checkUserExist = async (req, res, next) => {
+const checkUserRegister = async (req, res, next) => {
   const payload = jwt.decode(req.body.credential);
   console.log(payload.email);
 
@@ -10,10 +10,10 @@ const checkUserExist = async (req, res, next) => {
   if (user.email) {
     // TODO: check what's the syntax for next()
   } else {
-    // TODO: throw error
+    // TODO: Send user to register page with neccessary user details(for later store to users table)
   }
 };
 
 module.exports = {
-  checkUserExist,
+  checkUserRegister,
 };

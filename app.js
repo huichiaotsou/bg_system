@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const { SERVER_PORT } = process.env;
 const { postUserData } = require("./server/controller/form");
+const { checkUserRegister } = require("./server/middleware/user");
 const { saveUserDetails } = require("./server/controller/login");
 const app = express();
 
@@ -19,7 +20,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", checkUserRegister, (req, res) => {
   const payload = jwt.decode(req.body.credential);
   console.log(payload.email);
   console.log(payload.given_name);
@@ -28,7 +29,6 @@ app.post("/login", (req, res) => {
   // Verify if email has been registered in our system
 });
 
-// TODO: Need verifyUser middleware
 app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
