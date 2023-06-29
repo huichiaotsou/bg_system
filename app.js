@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const { SERVER_PORT } = process.env;
 const { postUserData } = require("./server/controller/form");
+const { saveUserDetails } = require("./server/controller/login");
 const app = express();
 
 // Set the public folder as the static directory
