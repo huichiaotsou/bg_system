@@ -3,24 +3,39 @@
 <head>
   <title>Taipei Campus 場地使用紀錄系統</title>
   <link rel="stylesheet" type="text/css" href="/login.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 </head>
 <body>
   <div id="header1">Taipei Campus</div>
   <div id="header2">場地使用紀錄系統</div>
 
-  <form>
-    <label for="name">姓名:</label>
-    <input type="text" id="name" name="name" placeholder="  Enter your name" required>
+  <div id="login_text"> 請使用 Google 帳號登入系統 </div>
+<!-- GOOGLE SIGN IN -->
+<div id="google-signin-button">
+  <div id="g_id_onload"
+     data-client_id="367177265116-v2ssukimr0dk8rn4avb4n7iimlmsergl.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-login_uri="/login"
+     data-auto_select="false"
+     data-itp_support="true">
+  </div>
 
-    <label for="phone">電話:</label>
-    <input type="tel" id="phone" name="phone" placeholder="  Enter your phone number" required>
+  <div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="outline"
+     data-text="signin_with"
+     data-size="large"
+     data-locale="default"
+     data-logo_alignment="left">
+  </div>
+</div>
 
-    <label for="email">電郵地址:</label>
-    <input type="tel" id="email" name="email" placeholder="  Enter your email address" required>
-
-    <input type="submit" value="註冊">
-  </form>
+<!-- GOOGLE SIGN IN -->
 
 </body>
 <script src="login.js"></script>

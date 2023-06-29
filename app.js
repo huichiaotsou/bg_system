@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const jwt = require("jsonwebtoken");
 require("dotenv");
 const bodyParser = require("body-parser");
 
@@ -17,6 +18,16 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
+app.post("/login", (req, res) => {
+  const payload = jwt.decode(req.body.credential);
+  console.log(payload.email);
+  console.log(payload.given_name);
+  console.log(payload.family_name);
+  console.log(payload.picture);
+  // Verify if email has been registered in our system
+});
+
+// TODO: Need verifyUser middleware
 app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
