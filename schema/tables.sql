@@ -11,9 +11,3 @@ CREATE TABLE users (
     is_admin            BOOLEAN      NOT NULL DEFAULT false
 );
 
--- Define the admins table to indicate which user is admin
-CREATE TABLE admins (
-    id          SERIAL  PRIMARY KEY,
-    user_id     INT     NOT NULL REFERENCES users (id)  
-);
-
