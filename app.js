@@ -5,8 +5,12 @@ require("dotenv");
 const bodyParser = require("body-parser");
 
 const { SERVER_PORT } = process.env;
-const { checkUserRegister } = require("./server/middleware/user");
-const { saveUserDetails } = require("./server/controller/login");
+// const { checkUserRegister } = require("./server/middleware/user");
+const {
+  getRegisteredUser,
+  saveUserDetails,
+} = require("./server/controller/user");
+const { log } = require("console");
 const app = express();
 
 // Set the public folder as the static directory
@@ -19,20 +23,17 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-app.post("/login", checkUserRegister, (req, res) => {
-  const payload = jwt.decode(req.body.credential);
-  console.log(payload.email);
-  console.log(payload.given_name);
-  console.log(payload.family_name);
-  console.log(payload.picture);
-  // Verify if email has been registered in our system
-});
+app.post("/login", getRegisteredUser);
 
 app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
 app.post("/register", saveUserDetails);
+
+app.get("/dashboard", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "dashboard.html"));
+});
 
 // Start the server
 app.listen(SERVER_PORT, () => {
