@@ -5,7 +5,6 @@ require("dotenv");
 const bodyParser = require("body-parser");
 
 const { SERVER_PORT } = process.env;
-const { postUserData } = require("./server/controller/form");
 const { checkUserRegister } = require("./server/middleware/user");
 const { saveUserDetails } = require("./server/controller/login");
 const app = express();
@@ -33,7 +32,7 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
-app.post("/post_user_data", postUserData);
+app.post("/register", saveUserDetails);
 
 // Start the server
 app.listen(SERVER_PORT, () => {
