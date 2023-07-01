@@ -31,7 +31,7 @@ app.get("/register", (req, res) => {
 app.post("/register", saveUserDetails);
 
 app.get("/dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "dashboard.html"));
+  res.sendFile(path.join(__dirname, "public", "dashboard", "dashboard.html"));
 });
 
 // Start the server

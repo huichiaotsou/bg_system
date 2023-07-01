@@ -3,15 +3,17 @@ const jwt = require("jsonwebtoken");
 
 const getRegisteredUser = async (req, res, next) => {
   const payload = jwt.decode(req.body.credential);
-  const user = await User.getUser(payload.email);
-
+  const [user] = await User.getUser(payload.email);
   const response = {
     user: {
       email: payload.email,
+      user_define_name: user.user_define_name,
       given_name: payload.given_name,
       family_name: payload.family_name,
       picture: payload.picture,
       complete_google_jwt: req.body.credential,
+      notes: user.notes,
+      is_admin: user.is_admin,
     },
   };
 
