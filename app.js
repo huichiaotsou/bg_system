@@ -5,12 +5,11 @@ require("dotenv");
 const bodyParser = require("body-parser");
 
 const { SERVER_PORT } = process.env;
-// const { checkUserRegister } = require("./server/middleware/user");
+const { checkUserRegister } = require("./server/middleware/user");
 const {
   getRegisteredUser,
   saveUserDetails,
 } = require("./server/controller/user");
-const { log } = require("console");
 const app = express();
 
 // Set the public folder as the static directory
