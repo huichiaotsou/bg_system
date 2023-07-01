@@ -22,7 +22,7 @@ function handleCredentialResponse(response) {
       const user = data.user;
       localStorage.setItem("user", JSON.stringify(user));
 
-      if (!data.registered) {
+      if (!user.registered) {
         window.location.href = "/register";
       } else {
         window.location.href = "/dashboard";

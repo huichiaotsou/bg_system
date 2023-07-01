@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 
 const getRegisteredUser = async (req, res, next) => {
   const payload = jwt.decode(req.body.credential);
-  const [user] = await User.getUser(payload.email);
   const response = {
     user: {
       email: payload.email,
@@ -14,18 +13,19 @@ const getRegisteredUser = async (req, res, next) => {
     },
   };
 
+  const [user] = await User.getUser(payload.email);
   if (!user) {
-    // User not registered
+    // User is not registered
     response.user.registered = false;
-    res.status(200).send(response);
   } else {
     // User is registered
     response.user.registered = true;
     response.user.user_define_name = user.user_define_name;
     response.user.notes = user.notes;
     response.user.is_admin = user.is_admin;
-    res.status(200).send(response);
   }
+
+  res.status(200).send(response);
 };
 
 const saveUserDetails = async (req, res, next) => {
@@ -42,7 +42,7 @@ const saveUserDetails = async (req, res, next) => {
       is_admin: false,
     };
 
-    const saveUser = await User.saveUser(userDetails);
+    await User.saveUser(userDetails);
 
     res.sendStatus(200);
   } catch (err) {
