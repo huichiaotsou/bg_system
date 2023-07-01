@@ -39,3 +39,22 @@ app.get("/dashboard", (req, res) => {
 app.listen(SERVER_PORT, () => {
   console.log(`Server is running on port ${SERVER_PORT}`);
 });
+
+// Error-handling
+const errorHandler = (err, req, res, next) => {
+  console.error(err); // Log the error for debugging purposes
+
+  // Set an appropriate status code based on the error
+  const statusCode = err.statusCode || 500;
+
+  // Send an error response to the client
+  res.status(statusCode).json({
+    error: {
+      message: err.message || "Internal Server Error",
+    },
+  });
+  // res.redirect("/error");
+};
+
+// Register the error-handling middleware
+app.use(errorHandler);

@@ -25,7 +25,6 @@ const executeQuery = async (query, values = []) => {
     if (client) {
       client.release();
     }
-    pool.end();
   }
 };
 
