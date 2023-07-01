@@ -1,8 +1,6 @@
-function checkLogin() {
-  const user = JSON.parse(localStorage.getItem("google_user"));
-  if (user == null) {
-    window.location.href = "/";
-  }
-}
+function loadUser() {
+  const user = JSON.parse(localStorage.getItem("user"));
 
-function loadUser() {}
+  const welcomeText = document.getElementById("welcome_text");
+  welcomeText.textContent = `Welcome Home ${user.userDefineName}`;
+}

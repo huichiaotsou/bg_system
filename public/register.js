@@ -1,10 +1,3 @@
-function checkLogin() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (user == null) {
-    window.location.href = "/";
-  }
-}
-
 // Submit registration form
 const form = document.querySelector("form");
 
@@ -12,14 +5,14 @@ form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent form default action
 
   // Get user details from form
-  var userDefineName = document.getElementById("name").value;
-  var phone = document.getElementById("phone").value;
+  const userDefineName = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
 
   // Get user details from local storage google_user
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // Create an object for formData
-  var formData = {
+  // Create an object for user formData
+  const userFormData = {
     givenNameGoogle: user.given_name,
     familyNameGoogle: user.family_name,
     userDefineName: userDefineName,
@@ -29,15 +22,18 @@ form.addEventListener("submit", function (event) {
     completeGoogleJWT: user.complete_google_jwt,
   };
 
+  const userDataString = JSON.stringify(userFormData);
+
   // Send post request to the server
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open("POST", "/register");
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(JSON.stringify(formData));
+  xhr.send(userDataString);
 
   // Response from server
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
+      localStorage.setItem("user", userDataString);
       window.location.href = "/dashboard";
     }
   };
