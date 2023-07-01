@@ -19,13 +19,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define routes and handle requests
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
+  res.sendFile(path.join(__dirname, "public", "login", "login.html"));
 });
 
 app.post("/login", getRegisteredUser);
 
 app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "register.html"));
+  res.sendFile(path.join(__dirname, "public", "register", "register.html"));
 });
 
 app.post("/register", saveUserDetails);

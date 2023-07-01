@@ -7,22 +7,23 @@ const getRegisteredUser = async (req, res, next) => {
   const response = {
     user: {
       email: payload.email,
-      user_define_name: user.user_define_name,
       given_name: payload.given_name,
       family_name: payload.family_name,
       picture: payload.picture,
       complete_google_jwt: req.body.credential,
-      notes: user.notes,
-      is_admin: user.is_admin,
     },
   };
 
-  if (user.length === 0) {
+  if (!user) {
     // User not registered
-    response.registered = false;
+    response.user.registered = false;
     res.status(200).send(response);
   } else {
-    response.registered = true;
+    // User is registered
+    response.user.registered = true;
+    response.user.user_define_name = user.user_define_name;
+    response.user.notes = user.notes;
+    response.user.is_admin = user.is_admin;
     res.status(200).send(response);
   }
 };
