@@ -1,5 +1,5 @@
 function checkLogin() {
-  const user = JSON.parse(localStorage.getItem("google_user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   if (user == null) {
     window.location.href = "/";
   }
@@ -16,17 +16,17 @@ form.addEventListener("submit", function (event) {
   var phone = document.getElementById("phone").value;
 
   // Get user details from local storage google_user
-  const googleUser = JSON.parse(localStorage.getItem("google_user"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   // Create an object for formData
   var formData = {
-    givenNameGoogle: googleUser.given_name,
-    familyNameGoogle: googleUser.family_name,
+    givenNameGoogle: user.given_name,
+    familyNameGoogle: user.family_name,
     userDefineName: userDefineName,
     phone: phone,
-    profilePictureLink: googleUser.picture,
-    email: googleUser.email,
-    completeGoogleJWT: googleUser.complete_google_jwt,
+    profilePictureLink: user.picture,
+    email: user.email,
+    completeGoogleJWT: user.complete_google_jwt,
   };
 
   // Send post request to the server

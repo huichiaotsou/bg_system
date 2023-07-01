@@ -4,3 +4,5 @@ function checkLogin() {
     window.location.href = "/";
   }
 }
+
+function loadUser() {}

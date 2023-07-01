@@ -20,7 +20,7 @@ function handleCredentialResponse(response) {
       localStorage.clear();
 
       const user = data.user;
-      localStorage.setItem("google_user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
 
       if (!data.registered) {
         window.location.href = "/register";
