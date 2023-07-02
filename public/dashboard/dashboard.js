@@ -16,3 +16,7 @@ function addAdminButton() {
   divElement.textContent = "管理員專區";
   document.body.appendChild(divElement);
 }
+
+function redirect(path) {
+  window.location.href = path;
+}

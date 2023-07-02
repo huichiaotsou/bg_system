@@ -8,7 +8,6 @@ async function checkLogin() {
 
   if (user.registered) {
     // If the user is registered, reload user details to local storage
-
     await refreshLocalStorageUser();
   }
 }

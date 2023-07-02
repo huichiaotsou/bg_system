@@ -15,6 +15,7 @@
     color: #1d292e;
     text-align: center;
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 #admin_button{
