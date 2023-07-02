@@ -8,6 +8,7 @@ async function checkLogin() {
 
   if (user.registered) {
     // If the user is registered, reload user details to local storage
+
     await refreshLocalStorageUser();
   }
 }
@@ -15,6 +16,7 @@ async function checkLogin() {
 async function refreshLocalStorageUser() {
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
   const token = localStorageUser.complete_google_jwt;
+  localStorage.clear();
 
   fetch(`/user/${localStorageUser.id}`, {
     method: "GET",
@@ -32,8 +34,7 @@ async function refreshLocalStorageUser() {
     })
     .then((data) => {
       // Handle the server's response
-      const user = data.user;
-      // localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(data));
     })
     .catch((error) => {
       console.error(error);
