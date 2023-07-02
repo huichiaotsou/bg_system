@@ -34,7 +34,7 @@ form.addEventListener("submit", function (event) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       localStorage.setItem("user", userDataString);
-      window.location.href = "/dashboard";
+      window.location.href = "/dashboard.html";
     }
   };
 });

@@ -14,6 +14,10 @@ const {
 const app = express();
 
 // Set the public folder as the static directory
+app.use(express.static(path.join(__dirname, "public", "checkin")));
+app.use(express.static(path.join(__dirname, "public", "dashboard")));
+app.use(express.static(path.join(__dirname, "public", "login")));
+app.use(express.static(path.join(__dirname, "public", "register")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,23 +27,8 @@ app.listen(SERVER_PORT, () => {
   console.log(`Server is running on port ${SERVER_PORT}`);
 });
 
-// Define routes and handle requests
-
 // == Login ==
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login", "login.html"));
-});
 app.post("/login", getRegisteredUser);
-
-// == New User Registration ==
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "register", "register.html"));
-});
-
-// == Render dashboard ==
-app.get("/dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "dashboard", "dashboard.html"));
-});
 
 // == User-related modifications: Get, Create, Update, Delete users ==
 // Get user

@@ -23,9 +23,9 @@ function handleCredentialResponse(response) {
       localStorage.setItem("user", JSON.stringify(user));
 
       if (!user.registered) {
-        window.location.href = "/register";
+        window.location.href = "/register.html";
       } else {
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboard.html";
       }
     })
     .catch((error) => {

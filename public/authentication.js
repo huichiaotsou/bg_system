@@ -3,11 +3,11 @@ function checkLogin() {
 
   if (user == null) {
     // If localstorage has no user logged in record, forward to login page
-    window.location.href = "/";
+    window.location.href = "/login.html";
   }
 
   if (user.registered && !window.location.href.includes("dashboard")) {
     // If the user is not registered according to the localstorage records, forward to dashboard
-    window.location.href = "/dashboard";
+    window.location.href = "/dashboard.html";
   }
 }
