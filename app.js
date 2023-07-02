@@ -27,9 +27,8 @@ app.use(express.static(path.join(__dirname, "public", "dashboard")));
 app.use(express.static(path.join(__dirname, "public", "login")));
 app.use(express.static(path.join(__dirname, "public", "register")));
 
+// User: Login, Get, Create, Update, Delete
 app.post("/login", getRegisteredUser);
-
-// Get, Create, Update, Delete user
 app.get("/user/:userID", getUserWithID);
 app.post("/user", saveUserDetails);
 // TODO:
