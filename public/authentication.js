@@ -16,8 +16,6 @@ async function checkLogin() {
 async function refreshLocalStorageUser() {
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
   const token = localStorageUser.complete_google_jwt;
-  localStorage.clear();
-
   fetch(`/user/${localStorageUser.id}`, {
     method: "GET",
     headers: {
