@@ -11,11 +11,13 @@ const {
 } = require("./server/controller/user");
 const { errorHandler } = require("./server/middleware/error");
 
+// Init app
 const app = express();
 app.listen(SERVER_PORT, () => {
   console.log(`Server is running on port ${SERVER_PORT}`);
 });
 
+// Body parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
