@@ -8,7 +8,6 @@ function handleCredentialResponse(response) {
     body: JSON.stringify({ credential }),
   })
     .then((response) => {
-      // TODO: verification at the server
       if (response.ok) {
         return response.json();
       } else {

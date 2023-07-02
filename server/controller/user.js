@@ -20,6 +20,8 @@ const getRegisteredUser = async (req, res, next) => {
   } else {
     // User is registered
     response.user.registered = true;
+    response.user.id = user.id;
+    response.user.phone = user.phone;
     response.user.user_define_name = user.user_define_name;
     response.user.notes = user.notes;
     response.user.is_admin = user.is_admin;

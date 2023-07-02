@@ -9,13 +9,14 @@ const {
   getRegisteredUser,
   saveUserDetails,
 } = require("./server/controller/user");
+
+// Import middlewares
 const { errorHandler } = require("./server/middleware/error");
+const { verifyUserIdentity } = require("./server/middleware/user");
 
 // Init app
 const app = express();
-app.listen(SERVER_PORT, () => {
-  console.log(`Server is running on port ${SERVER_PORT}`);
-});
+app.listen(SERVER_PORT, () => console.log(`Running on port ${SERVER_PORT}`));
 
 // Body parser
 const bodyParser = require("body-parser");
@@ -29,13 +30,12 @@ app.use(express.static(path.join(__dirname, "public", "dashboard")));
 app.use(express.static(path.join(__dirname, "public", "login")));
 app.use(express.static(path.join(__dirname, "public", "register")));
 
-// User: Login, Get, Create, Update, Delete
-app.post("/login", getRegisteredUser);
-app.get("/user/:userID", getUserWithID);
-app.post("/user", saveUserDetails);
-// TODO:
-app.get("/user/:userID");
-app.get("/user/:userID");
+// User
+app.post("/login", getRegisteredUser); // Login
+app.get("/user/:userID", verifyUserIdentity, getUserWithID); // Get user with ID
+app.post("/user", saveUserDetails); // Create new user
+app.get("/user/:userID", verifyUserIdentity); // TODO: update user
+app.get("/user/:userID", verifyUserIdentity); // TODO: delete user
 
 // Error handling
 app.use(errorHandler);

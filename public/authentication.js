@@ -1,4 +1,4 @@
-function checkLogin() {
+async function checkLogin() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (user == null) {
@@ -6,8 +6,36 @@ function checkLogin() {
     window.location.href = "/login.html";
   }
 
-  if (user.registered && !window.location.href.includes("dashboard")) {
-    // If the user is not registered according to the localstorage records, forward to dashboard
-    window.location.href = "/dashboard.html";
+  if (user.registered) {
+    // If the user is registered, reload user details to local storage
+    await refreshLocalStorageUser();
   }
+}
+
+async function refreshLocalStorageUser() {
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorageUser.complete_google_jwt;
+
+  fetch(`/user/${localStorageUser.id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to verify credential");
+      }
+    })
+    .then((data) => {
+      // Handle the server's response
+      const user = data.user;
+      // localStorage.setItem("user", JSON.stringify(user));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
