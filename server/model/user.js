@@ -1,12 +1,22 @@
 const { executeQuery } = require("./conn");
 
-const getUser = async (email) => {
+const getUserWithEmail = async (email) => {
   try {
     const query = "SELECT * FROM users WHERE email = $1";
     const values = [email];
     return await executeQuery(query, values);
   } catch (err) {
-    console.error("Error while getting user:", err);
+    console.error("Error while getting user with email:", err);
+  }
+};
+
+const getUserWithID = async (userID) => {
+  try {
+    const query = "SELECT * FROM users WHERE id = $1";
+    const values = [userID];
+    return await executeQuery(query, values);
+  } catch (err) {
+    console.error("Error while getting user with ID:", err);
   }
 };
 
@@ -58,6 +68,7 @@ const saveUser = async (userDetails) => {
 };
 
 module.exports = {
-  getUser,
+  getUserWithEmail,
+  getUserWithID,
   saveUser,
 };

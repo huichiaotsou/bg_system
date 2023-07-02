@@ -26,7 +26,7 @@ form.addEventListener("submit", function (event) {
 
   // Send post request to the server
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "/register");
+  xhr.open("POST", "/user");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(userDataString);
 

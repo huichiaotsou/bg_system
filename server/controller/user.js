@@ -13,7 +13,7 @@ const getRegisteredUser = async (req, res, next) => {
     },
   };
 
-  const [user] = await User.getUser(payload.email);
+  const [user] = await User.getUserWithEmail(payload.email);
   if (!user) {
     // User is not registered
     response.user.registered = false;
@@ -26,6 +26,11 @@ const getRegisteredUser = async (req, res, next) => {
   }
 
   res.status(200).send(response);
+};
+
+const getUserWithID = async (req, res, next) => {
+  const [user] = await User.getUserWithID(req.params.userID);
+  res.send(user);
 };
 
 const saveUserDetails = async (req, res, next) => {
@@ -52,5 +57,6 @@ const saveUserDetails = async (req, res, next) => {
 
 module.exports = {
   getRegisteredUser,
+  getUserWithID,
   saveUserDetails,
 };

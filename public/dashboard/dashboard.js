@@ -6,12 +6,13 @@ function loadUser() {
 
 function addAdminButton() {
   const user = JSON.parse(localStorage.getItem("user"));
-
-  if (user.is_admin) {
-    const divElement = document.createElement("div");
-    divElement.setAttribute("class", "button");
-    divElement.setAttribute("id", "admin_button");
-    divElement.textContent = "管理員專區";
-    document.body.appendChild(divElement);
+  if (!user.is_admin) {
+    return;
   }
+
+  const divElement = document.createElement("div");
+  divElement.setAttribute("class", "button");
+  divElement.setAttribute("id", "admin_button");
+  divElement.textContent = "管理員專區";
+  document.body.appendChild(divElement);
 }
