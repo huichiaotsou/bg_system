@@ -7,18 +7,18 @@ function fillUserData() {
   document.getElementById("phone").innerHTML += phone;
 }
 
-function clickedButton() {
+function addButtonEventListener() {
   const buttons = document.getElementsByClassName("venue_option");
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
-      // Remove 'clicked' id from all buttons
+      // Remove 'selected_venue' id from all buttons
       for (var j = 0; j < buttons.length; j++) {
         buttons[j].removeAttribute("id");
       }
 
-      // Add 'clicked' id to the clicked button
-      this.id = "clicked";
+      // Add 'selected_venue' id to the clicked button
+      this.id = "selected_venue";
     });
   }
 }

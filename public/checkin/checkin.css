@@ -47,6 +47,6 @@
     cursor: pointer;
 }
   
-#clicked {
+#selected_venue {
   background-color: #FFCB32;
 }

@@ -11,7 +11,6 @@ const {
 } = require("./server/controller/user");
 
 // Import middlewares
-const { errorHandler } = require("./server/middleware/error");
 const { verifyUserIdentity } = require("./server/middleware/user");
 
 // Init app
@@ -37,5 +36,10 @@ app.post("/user", saveUserDetails); // Create new user
 app.get("/user/:userID", verifyUserIdentity); // TODO: update user
 app.get("/user/:userID", verifyUserIdentity); // TODO: delete user
 
+// Venue
+app.post("/venue", verifyUserIdentity); // User checkin venue usage
+app.get("/venue/user/:userID"); // TODO: Get checkin records by user ID
+
 // Error handling
+const { errorHandler } = require("./server/middleware/error");
 app.use(errorHandler);

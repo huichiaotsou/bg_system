@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="checkLogin(); fillUserData()">
+<body onload="checkLogin(); fillUserData(); addButtonEventListener()">
   <div id="header1">Taipei Campus</div>
   <div id="header2">場地使用紀錄系統</div>
 
@@ -16,11 +16,12 @@
   
   <div class="title">今日使用場地：</div>
   <div class="venue_container">
-    <div class="venue_option" onclick="clickedButton()">Living Room</div>
-    <div class="venue_option" onclick="clickedButton()">Glassroom</div>
-    <div class="venue_option" onclick="clickedButton()">eHQ</div>
-    <div class="venue_option" onclick="clickedButton()">Kids Central</div>
-    <div class="venue_option" onclick="clickedButton()">Gather</div>
+    <!-- venue IDs are hard coded and they coincide with the IDs in the DB -->
+    <div class="venue_option" data-venueID="1">Living Room</div>
+    <div class="venue_option" data-venueID="2">Glassroom</div>
+    <div class="venue_option" data-venueID="3">eHQ</div>
+    <div class="venue_option" data-venueID="4">Kids Central</div>
+    <div class="venue_option" data-venueID="5">Gather</div>
   </div>
 
   <div class="button">
