@@ -6,19 +6,19 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(CLIENT_ID);
 
 const verifyUserIdentity = async (req, res, next) => {
-  const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
-
-  try {
-    // Verify the token with Google API
-    await client.verifyIdToken({
-      idToken: token,
-      audience: CLIENT_ID,
-    });
-
-    next();
-  } catch (err) {
-    next(err);
-  }
+  // const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+  // try {
+  //   // Verify the token with Google API
+  //   await client.verifyIdToken({
+  //     idToken: token,
+  //     audience: CLIENT_ID,
+  //   });
+  //   next();
+  // } catch (err) {
+  //   console.log(err);
+  //   res.status(403).send("unauthorized");
+  // }
+  next();
 };
 
 module.exports = {

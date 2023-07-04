@@ -34,6 +34,7 @@ function sendCheckinData() {
   const checkinDetails = {
     userID: user.id,
     venueID: selectedVenue.dataset.venueid,
+    checkinDate: getCurrDateString(),
   };
 
   // Send post request to the server
@@ -45,8 +46,21 @@ function sendCheckinData() {
 
   // Response from server
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      window.location.href = "/dashboard.html";
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        window.location.href = "/dashboard.html";
+      }
+      if (xhr.status === 409) {
+        alert("登記失敗，今日已登記");
+      }
     }
   };
+}
+
+function getCurrDateString() {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1;
+  const date = currentDate.getDate();
+  return `${year}-${month}-${date}`;
 }

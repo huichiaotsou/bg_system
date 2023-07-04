@@ -3,14 +3,14 @@ const { executeQuery } = require("./conn");
 // Store checkin details in the checkin table
 const saveCheckin = async (checkinDetails) => {
   try {
-    const { userID, venueID } = checkinDetails;
+    const { userID, venueID, checkinDate } = checkinDetails;
 
     const query =
-      "INSERT INTO checkins ( user_id, venue_id ) " +
-      "VALUES ($1, $2) " +
+      "INSERT INTO checkins ( user_id, venue_id, checkin_date ) " +
+      "VALUES ($1, $2, $3) " +
       "RETURNING id";
 
-    const values = [userID, venueID];
+    const values = [userID, venueID, checkinDate];
     const [result] = await executeQuery(query, values);
     const insertedUserId = result.id;
 

@@ -28,5 +28,6 @@ CREATE TABLE checkins (
     id              SERIAL          PRIMARY KEY,
     user_id         INT             REFERENCES users(id),
     venue_id        INT             REFERENCES venues(id),
-    checkin_time    TIMESTAMPTZ     NOT NULL DEFAULT CURRENT_TIMESTAMP
+    checkin_date    DATE            NOT NULL,
+    UNIQUE(user_id, checkin_date)
 );
