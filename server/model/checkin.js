@@ -26,6 +26,22 @@ const saveCheckin = async (checkinDetails) => {
   }
 };
 
+const getUserCheckin = async (checkinRequest) => {
+  try {
+    const query = "SELECT * FROM checkins WHERE user_id = $1 ";
+
+    if (checkinRequest.type == "today") {
+      query += "AND checkin_date = current_date";
+    }
+
+    const values = [checkinRequest.userID];
+    return await executeQuery(query, values);
+  } catch (err) {
+    console.error("Error while getting user checkin with user id:", err);
+  }
+};
+
 module.exports = {
   saveCheckin,
+  getUserCheckin,
 };

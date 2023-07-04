@@ -1,7 +1,6 @@
 const Checkin = require("../model/checkin");
 
 const saveUserCheckin = async (req, res, next) => {
-  let result;
   try {
     const checkinDetails = {
       userID: req.body.userID,
@@ -9,8 +8,7 @@ const saveUserCheckin = async (req, res, next) => {
       checkinDate: req.body.checkinDate,
     };
 
-    result = await Checkin.saveCheckin(checkinDetails);
-
+    await Checkin.saveCheckin(checkinDetails);
     res.sendStatus(200);
   } catch (err) {
     if (err.code == 23505) {
@@ -19,6 +17,21 @@ const saveUserCheckin = async (req, res, next) => {
   }
 };
 
+const getUserCheckin = async (req, res, next) => {
+  try {
+    const checkinRequest = {
+      type: req.body.type,
+      userID: req.body.id,
+    };
+
+    await Checkin.getUserCheckin(checkinRequest);
+    res.sendStatus(200);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   saveUserCheckin,
+  getUserCheckin,
 };
