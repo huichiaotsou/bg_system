@@ -22,3 +22,31 @@ function addButtonEventListener() {
     });
   }
 }
+
+function sendCheckinData() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const selectedVenue = document.getElementById("selected_venue");
+  if (selectedVenue == null) {
+    alert("請選擇場地");
+    return;
+  }
+
+  const checkinDetails = {
+    userID: user.id,
+    venueID: selectedVenue.dataset.venueid,
+  };
+
+  // Send post request to the server
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "/checkin");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", "Bearer " + user.complete_google_jwt);
+  xhr.send(JSON.stringify(checkinDetails));
+
+  // Response from server
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      window.location.href = "/dashboard.html";
+    }
+  };
+}
