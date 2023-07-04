@@ -2,18 +2,36 @@
 <html>
 <head>
   <title>Taipei Campus 場地使用紀錄系統</title>
-  <link rel="stylesheet" type="text/css" href="/register/checkin.css">
+  <link rel="stylesheet" type="text/css" href="/checkin/checkin.css">
   <link rel="stylesheet" type="text/css" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="checkLogin()">
+<body onload="checkLogin(); fillUserData()">
   <div id="header1">Taipei Campus</div>
   <div id="header2">場地使用紀錄系統</div>
 
+  <!-- Form for checking in -->
+  <div class="title" id="borrower">借用人：</div>
+  <div class="title" id="phone">借用人電話：</div>
+  
+  <div class="title">今日使用場地：</div>
+  <div class="venue_container">
+    <div class="venue_option" onclick="clickedButton()">Living Room</div>
+    <div class="venue_option" onclick="clickedButton()">Glassroom</div>
+    <div class="venue_option" onclick="clickedButton()">eHQ</div>
+    <div class="venue_option" onclick="clickedButton()">Kids Central</div>
+    <div class="venue_option" onclick="clickedButton()">Gather</div>
+  </div>
+
+  <div class="button">
+    確認送出
+  </div>
+
+  <!-- Form for checking in -->
   
 
 </body>
-<script src="/register/checkin.js"></script>
+<script src="/checkin/checkin.js"></script>
 <script src="/authentication.js"></script>
 
 

@@ -1,0 +1,52 @@
+.title{
+    font-size: large;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    display: block;
+}
+
+.venue_container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .venue_option {
+    font-size: small;
+    font-weight: 700;
+    text-align: center;
+    width: 70px;
+    height: 20px;
+    background-color: #bababa;
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    border-radius: 30px;
+    border: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button {
+    font-size: medium;
+    font-weight: 700;
+    width: 50%;
+    background-color: #FFCB32;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10% auto;
+    color: #1d292e;
+    text-align: center;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+  
+#clicked {
+  background-color: #FFCB32;
+}
