@@ -38,13 +38,13 @@ const getUserWithID = async (req, res, next) => {
 const saveUserDetails = async (req, res, next) => {
   try {
     const userDetails = {
-      given_name_google: req.body.givenNameGoogle,
-      family_name_google: req.body.familyNameGoogle,
-      user_define_name: req.body.userDefineName,
+      given_name_google: req.body.given_name_google,
+      family_name_google: req.body.family_name_google,
+      user_define_name: req.body.user_define_name,
       phone: req.body.phone,
-      profile_picture_link: req.body.profilePictureLink,
+      profile_picture_link: req.body.profile_picture_link,
       email: req.body.email,
-      complete_google_jwt: req.body.completeGoogleJWT,
+      complete_google_jwt: req.body.complete_google_jwt,
       notes: "",
       is_admin: false,
     };

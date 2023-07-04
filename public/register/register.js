@@ -13,13 +13,13 @@ form.addEventListener("submit", function (event) {
 
   // Create an object for user formData
   const userFormData = {
-    givenNameGoogle: user.given_name,
-    familyNameGoogle: user.family_name,
-    userDefineName: userDefineName,
+    given_name_google: user.given_name,
+    family_name_google: user.family_name,
+    user_define_name: userDefineName,
     phone: phone,
-    profilePictureLink: user.picture,
+    profile_picture_link: user.picture,
     email: user.email,
-    completeGoogleJWT: user.complete_google_jwt,
+    complete_google_jwt: user.complete_google_jwt,
   };
 
   const userDataString = JSON.stringify(userFormData);
