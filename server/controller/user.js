@@ -32,8 +32,16 @@ const getRegisteredUser = async (req, res, next) => {
 };
 
 const getUserWithID = async (req, res, next) => {
-  const [user] = await User.getUserWithID(req.params.userID);
-  res.send(user);
+  let userID = req.params.userID;
+  let dbUser;
+  if (userID === "undefined") {
+    const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+    const userDetails = jwt.decode(token);
+    [dbUser] = await User.getUserWithEmail(userDetails.email);
+  } else {
+    [dbUser] = await User.getUserWithID(userID);
+  }
+  res.send(dbUser);
 };
 
 const saveUserDetails = async (req, res, next) => {

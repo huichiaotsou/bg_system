@@ -21,7 +21,7 @@ const saveCheckin = async (checkinDetails) => {
       throw new Error("Failed to insert user details");
     }
   } catch (err) {
-    console.error("Error storing user details:", err);
+    console.error("Error storing checkin:", err);
     throw err;
   }
 };
