@@ -14,9 +14,6 @@ function addAdminButton() {
   divElement.setAttribute("class", "button");
   divElement.setAttribute("id", "admin_button");
   divElement.textContent = "管理員專區";
+  divElement.setAttribute("onclick", "redirect('/admin.html')");
   document.body.appendChild(divElement);
-}
-
-function redirect(path) {
-  window.location.href = path;
 }

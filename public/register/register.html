@@ -6,16 +6,24 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="checkLogin()">
+<body onload="checkLogin(); fillinBGleaders()">
   <div id="header1">Taipei Campus</div>
   <div id="header2">場地使用紀錄系統</div>
 
   <form>
     <label for="name">姓名:</label>
-    <input type="text" id="name" name="name" placeholder="  請填入全名 Please fill in your name" required>
+    <input type="text" id="name" name="name" placeholder="  請填入中文全名 Please fill in your name" required>
 
     <label for="phone">電話:</label>
     <input type="tel" id="phone" name="phone" placeholder="  請填入電話號碼 Please fill in mobile number" required>
+
+    <label for="phone">所屬小組:</label>
+    <!-- <input type="text" id="groupleader" name="groupleader" placeholder="  請填入組長姓名 Please fill in belong group leader" required> -->
+
+    <select id="mySelect">
+      <option value="option1">鄒惠喬 Aaron</option>
+      <option value="option2">周德瑄 Dora</option>
+    </select>
 
     <input type="submit" value="註冊">
   </form>

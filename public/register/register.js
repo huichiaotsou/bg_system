@@ -1,12 +1,17 @@
+// Auto fill in belong group leader's name
+function fillinBGleaders() {
+  // Fill in select of groups
+}
+
 // Submit registration form
 const form = document.querySelector("form");
-
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent form default action
 
   // Get user details from form
   const userDefineName = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
+  const groupLeader = document.getElementById("groupleader").value;
 
   // Get user details from local storage google_user
   const user = JSON.parse(localStorage.getItem("user"));
@@ -20,6 +25,7 @@ form.addEventListener("submit", function (event) {
     profile_picture_link: user.picture,
     email: user.email,
     complete_google_jwt: user.complete_google_jwt,
+    groupLeader: groupLeader,
   };
 
   const userDataString = JSON.stringify(userFormData);

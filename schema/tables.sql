@@ -25,9 +25,37 @@ INSERT INTO venues (venue_name) VALUES ('Kids Central');
 INSERT INTO venues (venue_name) VALUES ('Gather');
 
 CREATE TABLE checkins (
-    id              SERIAL          PRIMARY KEY,
-    user_id         INT             REFERENCES users(id),
-    venue_id        INT             REFERENCES venues(id),
-    checkin_date    DATE            NOT NULL,
+    id                  SERIAL          PRIMARY KEY,
+    user_id             INT             NOT NULL REFERENCES users(id),
+    venue_id            INT             NOT NULL REFERENCES venues(id),
+    checkin_date        DATE            NOT NULL,
+    validated           BOOLEAN         NOT NULL DEFAULT false,
+    validated_by        INT             REFERENCES users(id),
+    examination_result  TEXT,
     UNIQUE(user_id, checkin_date)
+);
+
+CREATE TABLE belong_groups (
+    id              SERIAL          PRIMARY KEY,
+    group_leader    VARCHAR(50)     NOT NULL DEFAULT ''
+);
+
+-- Keep track of which person belongs to which group, for fast filling in group selection at front end
+CREATE TABLE group_members (
+    group_id        INT             NOT NULL REFERENCES belong_groups (id),
+    user_id         INT             NOT NULL REFERENCES users (id)
+);
+
+CREATE TYPE WEEKDAYS AS ENUM (
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+);
+
+CREATE TABLE bg_schedule (
+    id              SERIAL          PRIMARY KEY,
+    group_id        INT             NOT NULL REFERENCES belong_groups (id),
+    scheduled_day   WEEKDAYS        NOT NULL,
+    
+    -- Keep records of the valid period:
+    start_day       DATE            NOT NULL,
+    end_day         DATE            NOT NULL
 );

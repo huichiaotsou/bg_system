@@ -1,4 +1,5 @@
 const User = require("../model/user");
+const Group = require("../model/group");
 const jwt = require("jsonwebtoken");
 
 const getRegisteredUser = async (req, res, next) => {
@@ -49,7 +50,15 @@ const saveUserDetails = async (req, res, next) => {
       is_admin: false,
     };
 
-    await User.saveUser(userDetails);
+    const userID = await User.saveUser(userDetails);
+    const groupID = await Group.createGroup(req.body.groupLeader);
+
+    const userGroup = {
+      userID,
+      groupID,
+    };
+
+    await Group.saveGroupMember(userGroup);
 
     res.sendStatus(200);
   } catch (err) {
