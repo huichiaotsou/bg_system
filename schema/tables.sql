@@ -1,6 +1,12 @@
+CREATE TABLE belong_groups (
+    id              SERIAL          PRIMARY KEY,
+    group_leader    VARCHAR(50)     NOT NULL DEFAULT ''
+);
+
 -- Define the users table to store the user's basic information
 CREATE TABLE users (
     id                      SERIAL       PRIMARY KEY,
+    group_id                INT          REFERENCES belong_groups (id),
     given_name_google       VARCHAR(50)  NOT NULL DEFAULT '',
     family_name_google      VARCHAR(50)  NOT NULL DEFAULT '',
     user_define_name        VARCHAR(50)  NOT NULL DEFAULT '',
@@ -35,11 +41,6 @@ CREATE TABLE checkins (
     UNIQUE(user_id, checkin_date)
 );
 
-CREATE TABLE belong_groups (
-    id              SERIAL          PRIMARY KEY,
-    group_leader    VARCHAR(50)     NOT NULL DEFAULT ''
-);
-
 -- Keep track of which person belongs to which group, for fast filling in group selection at front end
 CREATE TABLE group_members (
     group_id        INT             NOT NULL REFERENCES belong_groups (id),
@@ -50,12 +51,24 @@ CREATE TYPE WEEKDAYS AS ENUM (
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 );
 
-CREATE TABLE bg_schedule (
+CREATE TYPE TIMESLOT AS ENUM (
+    '6:000-7:30', '7:30-9:30'
+);
+
+CREATE TABLE venue_distribution (
     id              SERIAL          PRIMARY KEY,
     group_id        INT             NOT NULL REFERENCES belong_groups (id),
+    venue_id        INT             NOT NULl REFERENCES venues (id),
     scheduled_day   WEEKDAYS        NOT NULL,
+    scheduled_time  TIMESLOT        NOT NULL,
+
+    -- keep records of who set the schedule
+    set_by          INT             NOT NULl REFERENCES users (id),
     
-    -- Keep records of the valid period:
-    start_day       DATE            NOT NULL,
-    end_day         DATE            NOT NULL
+    -- Keep records of the valid period: optional
+    start_day       DATE            ,
+    end_day         DATE            ,
+
+    -- each venue, day, time slot can take only one group at a time
+    UNIQUE(venue_id, scheduled_day, scheduled_time)
 );

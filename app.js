@@ -13,9 +13,13 @@ const {
   saveUserCheckin,
   getUserCheckin,
 } = require("./server/controller/checkin");
+const { updateVenueDistribution } = require("./server/controller/venue");
 
 // Import middlewares
-const { verifyUserIdentity } = require("./server/middleware/user");
+const {
+  verifyUserIdentity,
+  verifyIsAdmin,
+} = require("./server/middleware/user");
 
 // Init app
 const app = express();
@@ -47,6 +51,9 @@ app.get("/user/:userID", verifyUserIdentity); // TODO: delete user
 // Checkin
 app.post("/checkin", verifyUserIdentity, saveUserCheckin); // User checkin venue usage
 app.get("/checkin/user/:userID", verifyUserIdentity, getUserCheckin); // Get checkin records by user ID
+
+// Venue
+app.post("/venue", verifyIsAdmin, updateVenueDistribution);
 
 // Error handling
 const { errorHandler } = require("./server/middleware/error");

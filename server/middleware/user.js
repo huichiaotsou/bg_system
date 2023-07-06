@@ -21,6 +21,20 @@ const verifyUserIdentity = async (req, res, next) => {
   next();
 };
 
+const verifyIsAdmin = async (req, res, next) => {
+  const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+  const jwt = require("jsonwebtoken");
+  const user = jwt.decode(token);
+  const dbUser = User.getUserWithID(user.id);
+  if (!dbUser.is_admin) {
+    res.send(403);
+    return;
+  }
+  req.body.setterUserID = user.id;
+  next();
+};
+
 module.exports = {
   verifyUserIdentity,
+  verifyIsAdmin,
 };

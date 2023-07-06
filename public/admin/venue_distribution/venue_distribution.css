@@ -1,0 +1,65 @@
+#weekdays {
+    display: flex;
+    height: 5vh;
+    width: 60%;
+    margin: -15px auto 10px;
+    margin-bottom: 10px;
+    font-size: large;
+    font-weight: 700;
+    border: 1px solid white;
+    background-color: #dbebf3;
+    border-radius: 15px;
+
+    /* centered */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */    
+    text-align: center;
+}
+
+.venue_container{
+    display: flex;
+    height: 12vh;
+}
+
+.venue_box, .time_box, .group_box {
+    background-color:#dbebf3;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    font-size: medium;
+}
+
+.venue_box {
+    flex: 27%;
+
+    /* 居中 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */    
+    text-align: center;
+}
+
+.time_box {
+    flex: 25%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.group_box {
+    flex: 48%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.time_option, .group_option{
+    flex: 1;
+    border: 1px solid rgb(255, 255, 255);
+
+    /* 居中 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+}
+
+
