@@ -10,7 +10,7 @@ const {
   saveUserDetails,
   getAllUsers,
 } = require("./server/controller/user");
-const { getAllAdmins, updateAdmin } = require("./server/controller/admin");
+const { updateAdmins } = require("./server/controller/admin");
 const {
   saveUserCheckin,
   getUserCheckin,
@@ -64,7 +64,7 @@ app.get("/user/:userID", verifyUserIdentity); // TODO: delete user
 
 // Admin
 // app.get("/admin", verifyUserIdentity, verifyIsAdmin, getAllAdmins); // Get user with ID
-app.post("/admin", verifyIsAdmin, updateAdmin); // Get user with ID
+app.post("/admin", verifyIsAdmin, updateAdmins); // Get user with ID
 
 // Checkin
 app.post("/checkin", verifyUserIdentity, saveUserCheckin); // User checkin venue usage

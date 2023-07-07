@@ -1,9 +1,8 @@
-const CLIENT_ID =
-  "367177265116-v2ssukimr0dk8rn4avb4n7iimlmsergl.apps.googleusercontent.com";
-
+// const CLIENT_ID =
+//   "367177265116-v2ssukimr0dk8rn4avb4n7iimlmsergl.apps.googleusercontent.com";
+// const { OAuth2Client } = require("google-auth-library");
+// const client = new OAuth2Client(CLIENT_ID);
 const User = require("../model/user");
-const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client(CLIENT_ID);
 
 const verifyUserIdentity = async (req, res, next) => {
   const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
@@ -15,8 +14,8 @@ const verifyUserIdentity = async (req, res, next) => {
     if (dbUser.length < 1) {
       res.status(403).send("unauthorized");
     }
-    req.body.email = dbUser.email;
-    req.body.userID = dbUser.id;
+    req.body.email = dbUser[0].email;
+    req.body.userID = dbUser[0].id;
     next();
 
     // // Verify the token with Google API

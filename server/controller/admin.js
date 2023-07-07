@@ -6,14 +6,13 @@ const Admin = require("../model/admin");
 //   res.send(admins);
 // };
 
-const updateAdmin = async (req, res, next) => {
-  const result = await Admin.updateAdmin(req.body.userID);
-
-  console.log("updateAdmin result:", result);
-  res.status(200).send(result);
+const updateAdmins = async (req, res, next) => {
+  await Admin.clearAdmins();
+  await Admin.updateAdmins(req.body.userIDs);
+  res.status(200).send({ success: "ok" });
 };
 
 module.exports = {
   // getAllAdmins,
-  updateAdmin,
+  updateAdmins,
 };

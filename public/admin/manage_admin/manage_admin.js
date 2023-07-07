@@ -42,6 +42,9 @@ function createSingleUserDiv(user) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.dataset.userid = user.id;
+  if (user.is_admin) {
+    checkbox.checked = true;
+  }
   checkboxDiv.appendChild(checkbox);
 
   // Create a div for the user name
@@ -62,4 +65,44 @@ function createSingleUserDiv(user) {
   // Append the groups box to the groups container
   const adminContainer = document.getElementById("admin_container");
   adminContainer.appendChild(userBox);
+}
+
+function setAdmins() {
+  // Get all the checkboxes that are checked
+  const checkboxes = document.querySelectorAll(
+    'input[type="checkbox"]:checked'
+  );
+
+  // Get userIDs
+  const userIDs = [];
+  checkboxes.forEach((checkbox) => {
+    const userID = checkbox.getAttribute("data-userid");
+    userIDs.push(userID);
+  });
+
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorageUser.complete_google_jwt;
+
+  fetch("/admin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ userIDs }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to update admins");
+      }
+    })
+    .then((data) => {
+      // Handle the server's response
+      alert("修改完成");
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }

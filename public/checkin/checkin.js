@@ -33,6 +33,7 @@ function sendCheckinData() {
 
   const checkinDetails = {
     userID: user.id,
+    email: user.email,
     venueID: selectedVenue.dataset.venueid,
     checkinDate: getCurrDateString(),
   };
@@ -51,7 +52,7 @@ function sendCheckinData() {
         window.location.href = "/dashboard.html";
       }
       if (xhr.status === 409) {
-        alert("登記失敗，今日已登記");
+        alert("登記失敗，今日已登記。如欲修改請洽管理員");
       }
     }
   };
