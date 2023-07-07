@@ -11,6 +11,10 @@ const getExistingGroups = async (req, res, next) => {
 const saveNewGroup = async (req, res, next) => {
   try {
     const groupLeader = req.body.groupLeaderName;
+    if (groupLeader.trim().length == 0) {
+      res.send(403);
+      return;
+    }
     const groupID = await Group.createGroup(groupLeader);
     const group = {
       id: groupID,

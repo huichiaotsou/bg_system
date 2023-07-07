@@ -37,7 +37,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Static directories
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public", "admin")));
-app.use(express.static(path.join(__dirname, "public", "admin", "add_groups")));
+app.use(
+  express.static(path.join(__dirname, "public", "admin", "manage_groups"))
+);
 app.use(
   express.static(path.join(__dirname, "public", "admin", "venue_distribution"))
 );

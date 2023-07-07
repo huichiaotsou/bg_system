@@ -51,7 +51,8 @@ function createGroup(event) {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to verify credential");
+        alert("小組新增失敗");
+        throw new Error("Failed to add groups");
       }
     })
     .then((group) => {
