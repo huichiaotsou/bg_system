@@ -1,3 +1,5 @@
+
+
 #weekdays {
     display: flex;
     height: 5vh;
@@ -9,6 +11,8 @@
     border: 1px solid white;
     background-color: #dbebf3;
     border-radius: 15px;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.3);
+
 
     /* centered */
     justify-content: center; /* 水平居中 */
@@ -19,12 +23,12 @@
 .venue_container{
     display: flex;
     height: 12vh;
+    margin-bottom: 20px;
 }
 
 .venue_box, .time_box, .group_box {
-    background-color:#dbebf3;
+    /* background-color:#dbebf3; */
     border: 1px solid rgb(255, 255, 255);
-    border-radius: 15px;
     font-size: medium;
 }
 
@@ -55,11 +59,23 @@
 .time_option, .group_option{
     flex: 1;
     border: 1px solid rgb(255, 255, 255);
+    margin-bottom: 4px;
 
     /* 居中 */
     display: flex;
     justify-content: center; /* 水平居中 */
     align-items: center; /* 垂直居中 */
+}
+
+.time_option, .group_option{
+    background-color:#dbebf3;
+    border-radius: 15px;
+}
+
+.group_option {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: medium;
+    text-align: center;
 }
 
 
