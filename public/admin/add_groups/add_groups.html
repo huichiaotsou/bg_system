@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  <link rel="stylesheet" type="text/css" href="/add_groups/add_groups.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="checkLogin(); loadWeekday(); loadScheduleOnSelect(); addGroupSlotListener(); ">
+  <div id="header1">Taipei Campus</div>
+  <div id="header2">場地使用紀錄系統</div>
+
+  <div id="current_groups_title">現有小組</div>
+  
+  <div id="groups_container">
+    <div class="groups_box">
+      <div class="group_name">
+        鄒惠喬 Aaron
+      </div>
+      <div class="delete_button">
+        刪除
+      </div>
+    </div>
+
+  </div>
+
+  <div id="page_end_buttons">
+    <div id="add_group_button">
+      新增小組
+    </div>
+    <div id="submit_button">
+      確認送出
+    </div>
+  </div>
+
+</body>
+<script src="/add_groups/add_groups.js"></script>
+<script src="/authentication.js"></script>
+<script src="/utils.js"></script>
+
+
+</html>

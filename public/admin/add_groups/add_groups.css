@@ -1,0 +1,89 @@
+#current_groups_title {
+    height: 6vh;
+    margin: -2vh auto 15px;
+    width: 45%;
+    /* background-color: #dbebf3; */
+    border-bottom: 1px solid rgb(194, 192, 192);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#groups_container{
+    margin-bottom: 25vh;
+}
+
+.groups_box {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    width: 60%;
+    margin: 0 auto 10px;
+}
+
+.group_name {
+    flex: 75%;
+}
+
+.delete_button {
+    flex: 25%;
+}
+
+.group_name {
+    height: 6vh;
+    border-radius: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    /* Center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete_button {
+    background-color: #ffffff;
+    height: 6vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-left: 1px solid rgb(194, 192, 192);
+
+    /* Center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#page_end_buttons{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    bottom: 5vh;
+    transform: translateX(13%);
+}
+
+#add_group_button {
+    flex: 50%;
+    background-color: white;
+}
+
+#submit_button {
+    flex: 50%;
+    background-color: #FFCB32;
+  }
+
+#add_group_button, #submit_button{
+    height: 6vh;
+    margin: 20px;
+    /* background-color: #dbebf3; */
+    border-radius: 30px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
