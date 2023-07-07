@@ -77,8 +77,14 @@ const saveUserDetails = async (req, res, next) => {
   }
 };
 
+const getAllUsers = async (req, res, next) => {
+  const users = await User.getAllUsers();
+  res.send(users);
+};
+
 module.exports = {
   getRegisteredUser,
   getUserWithID,
   saveUserDetails,
+  getAllUsers,
 };

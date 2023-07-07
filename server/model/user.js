@@ -73,8 +73,19 @@ const saveUser = async (userDetails) => {
   }
 };
 
+const getAllUsers = async () => {
+  try {
+    const query = "SELECT * FROM users ";
+    const values = [];
+    return await executeQuery(query, values);
+  } catch (err) {
+    console.error("Error while getting all users:", err);
+  }
+};
+
 module.exports = {
   getUserWithEmail,
   getUserWithID,
   saveUser,
+  getAllUsers,
 };

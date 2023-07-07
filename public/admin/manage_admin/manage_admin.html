@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  <link rel="stylesheet" type="text/css" href="/manage_admin/manage_admin.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="checkLogin(); loadAllUsers()">
+  <div id="header1">Taipei Campus</div>
+  <div id="header2">場地使用紀錄系統</div>
+
+  <div id="current_admin_title">使用者名單</div>
+  
+  <div id="admin_container">
+
+    <div class="user_box">
+      <div class="checkbox">
+        管理者
+      </div>
+      <div class="username">
+        姓名
+      </div>
+      <div class="useremail" id="emailtitle">
+        電子郵件地址
+      </div>
+    </div>
+
+  </div>
+
+  <div id="page_end_buttons">
+    <div id="add_admin_button" onclick="updateAdmins()">
+      確認送出
+    </div>
+  </div>
+
+</body>
+<script src="/manage_admin/manage_admin.js"></script>
+<script src="/authentication.js"></script>
+<script src="/utils.js"></script>
+
+
+</html>

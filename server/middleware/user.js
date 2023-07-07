@@ -6,31 +6,40 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(CLIENT_ID);
 
 const verifyUserIdentity = async (req, res, next) => {
-  // const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
-  // try {
-  //   // Verify the token with Google API
-  //   await client.verifyIdToken({
-  //     idToken: token,
-  //     audience: CLIENT_ID,
-  //   });
-  //   next();
-  // } catch (err) {
-  //   console.log(err);
-  //   res.status(403).send("unauthorized");
-  // }
-  next();
+  const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+  try {
+    const jwt = require("jsonwebtoken");
+    const user = jwt.decode(token);
+
+    const dbUser = await User.getUserWithEmail(user.email);
+    if (dbUser.length < 1) {
+      res.status(403).send("unauthorized");
+    }
+    req.body.email = dbUser.email;
+    req.body.userID = dbUser.id;
+    next();
+
+    // // Verify the token with Google API
+    // await client.verifyIdToken({
+    //   idToken: token,
+    //   audience: CLIENT_ID,
+    // });
+  } catch (err) {
+    console.log(err);
+    res.status(403).send("unauthorized");
+  }
 };
 
 const verifyIsAdmin = async (req, res, next) => {
-  const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
-  const jwt = require("jsonwebtoken");
-  const user = jwt.decode(token);
-  const dbUser = User.getUserWithID(user.id);
-  if (!dbUser.is_admin) {
-    res.send(403);
-    return;
-  }
-  req.body.setterUserID = user.id;
+  // const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+  // const jwt = require("jsonwebtoken");
+  // const user = jwt.decode(token);
+  // const dbUser = User.getUserWithID(user.id);
+  // if (!dbUser.is_admin) {
+  //   res.send(403);
+  //   return;
+  // }
+  // req.body.setterUserID = user.id;
   next();
 };
 

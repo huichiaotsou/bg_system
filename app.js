@@ -8,7 +8,9 @@ const {
   getUserWithID,
   getRegisteredUser,
   saveUserDetails,
+  getAllUsers,
 } = require("./server/controller/user");
+const { getAllAdmins, updateAdmin } = require("./server/controller/admin");
 const {
   saveUserCheckin,
   getUserCheckin,
@@ -39,6 +41,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public", "admin")));
 app.use(
+  express.static(path.join(__dirname, "public", "admin", "manage_admin"))
+);
+app.use(
   express.static(path.join(__dirname, "public", "admin", "manage_groups"))
 );
 app.use(
@@ -52,9 +57,14 @@ app.use(express.static(path.join(__dirname, "public", "register")));
 // User
 app.post("/login", getRegisteredUser); // Login
 app.get("/user/:userID", verifyUserIdentity, getUserWithID); // Get user with ID
+app.get("/user", verifyUserIdentity, getAllUsers); // Get all users
 app.post("/user", saveUserDetails); // Create new user
 app.get("/user/:userID", verifyUserIdentity); // TODO: update user
 app.get("/user/:userID", verifyUserIdentity); // TODO: delete user
+
+// Admin
+// app.get("/admin", verifyUserIdentity, verifyIsAdmin, getAllAdmins); // Get user with ID
+app.post("/admin", verifyIsAdmin, updateAdmin); // Get user with ID
 
 // Checkin
 app.post("/checkin", verifyUserIdentity, saveUserCheckin); // User checkin venue usage
@@ -64,9 +74,9 @@ app.get("/checkin/user/:userID", verifyUserIdentity, getUserCheckin); // Get che
 app.post("/venue", verifyIsAdmin, updateVenueDistribution);
 
 // Groups
-app.get("/groups", getExistingGroups);
-app.post("/groups", saveNewGroup);
-app.delete("/groups/:groupID", deleteGroup);
+app.get("/groups", verifyIsAdmin, getExistingGroups);
+app.post("/groups", verifyIsAdmin, saveNewGroup);
+app.delete("/groups/:groupID", verifyIsAdmin, deleteGroup);
 
 // Error handling
 const { errorHandler } = require("./server/middleware/error");
