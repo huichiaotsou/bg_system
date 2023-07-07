@@ -4,7 +4,7 @@
 // const client = new OAuth2Client(CLIENT_ID);
 const User = require("../model/user");
 
-const verifyUserIdentity = async (req, res, next) => {
+const verifyIsUser = async (req, res, next) => {
   const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
   try {
     const jwt = require("jsonwebtoken");
@@ -43,6 +43,6 @@ const verifyIsAdmin = async (req, res, next) => {
 };
 
 module.exports = {
-  verifyUserIdentity,
+  verifyIsUser,
   verifyIsAdmin,
 };

@@ -23,10 +23,7 @@ const {
 } = require("./server/controller/groups");
 
 // Import middlewares
-const {
-  verifyUserIdentity,
-  verifyIsAdmin,
-} = require("./server/middleware/user");
+const { verifyIsUser, verifyIsAdmin } = require("./server/middleware/user");
 
 // Init app
 const app = express();
@@ -56,27 +53,25 @@ app.use(express.static(path.join(__dirname, "public", "register")));
 
 // User
 app.post("/login", getRegisteredUser); // Login
-app.get("/user/:userID", verifyUserIdentity, getUserWithID); // Get user with ID
-app.get("/user", verifyUserIdentity, getAllUsers); // Get all users
 app.post("/user", saveUserDetails); // Create new user
-app.patch("/user/:userID", verifyUserIdentity); // TODO: update user
-app.delete("/user/:userID", verifyUserIdentity); // TODO: delete user
+app.get("/user/:userID", verifyIsUser, getUserWithID); // Get user with ID
+app.get("/user", verifyIsUser, verifyIsAdmin, getAllUsers); // Get all users
+app.patch("/user/:userID", verifyIsUser, verifyIsAdmin); // TODO: update user
 
 // Admin
-// app.get("/admin", verifyUserIdentity, verifyIsAdmin, getAllAdmins); // Get user with ID
-app.post("/admin", verifyIsAdmin, updateAdmins); // Get user with ID
+app.post("/admin", verifyIsUser, verifyIsAdmin, updateAdmins); // Update a list of users as admin
 
 // Checkin
-app.post("/checkin", verifyUserIdentity, saveUserCheckin); // User checkin venue usage
-app.get("/checkin/user/:userID", verifyUserIdentity, getUserCheckin); // Get checkin records by user ID
+app.post("/checkin", verifyIsUser, saveUserCheckin); // User checkin venue usage
+app.get("/checkin/user/:userID", verifyIsUser, getUserCheckin); // Get checkin records by user ID
 
 // Venue
-app.post("/venue", verifyIsAdmin, updateVenueDistribution);
+app.post("/venue", verifyIsUser, verifyIsAdmin, updateVenueDistribution); // Update venue distribution
 
 // Groups
-app.get("/groups", verifyIsAdmin, getExistingGroups);
-app.post("/groups", verifyIsAdmin, saveNewGroup);
-app.delete("/groups/:groupID", verifyIsAdmin, deleteGroup);
+app.get("/groups", verifyIsUser, verifyIsAdmin, getExistingGroups); // Get all groups
+app.post("/groups", verifyIsUser, verifyIsAdmin, saveNewGroup); // Create a new group
+app.delete("/groups/:groupID", verifyIsUser, verifyIsAdmin, deleteGroup); // Delete a existing group
 
 // Error handling
 const { errorHandler } = require("./server/middleware/error");
