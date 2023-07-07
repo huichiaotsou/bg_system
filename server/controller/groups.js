@@ -8,6 +8,22 @@ const getExistingGroups = async (req, res, next) => {
   }
 };
 
+const saveNewGroup = async (req, res, next) => {
+  try {
+    const groupLeader = req.body.groupLeaderName;
+    const groupID = await Group.createGroup(groupLeader);
+    const group = {
+      id: groupID,
+      group_leader: groupLeader,
+    };
+
+    res.status(200).send(group);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getExistingGroups,
+  saveNewGroup,
 };

@@ -26,7 +26,7 @@ async function refreshLocalStorageUser() {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to verify credential");
+        throw new Error("Failed to get user");
       }
     })
     .then((data) => {

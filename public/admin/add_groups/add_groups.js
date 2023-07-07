@@ -13,12 +13,11 @@ function loadExistingGroups() {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to verify credential");
+        throw new Error("Failed to get groups");
       }
     })
     .then((data) => {
       // Handle the server's response
-      localStorage.setItem("groups", JSON.stringify(data));
       createGroupsDivs(data);
     })
     .catch((error) => {
@@ -33,10 +32,36 @@ function deleteGroup(event) {
 }
 
 function createGroup(event) {
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorageUser.complete_google_jwt;
+
   const inputField = event.target.previousElementSibling;
   const groupLeaderName = inputField.value;
 
   // TODO: add group to the database
+  fetch("/groups", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ groupLeaderName }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to verify credential");
+      }
+    })
+    .then((group) => {
+      // Handle the server's response
+      // group: group_leader and id
+      createSingleGroupDiv(group);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   // Replace the confirmed div, and create the group with successful insertion
   deleteGroup(event);
@@ -56,6 +81,7 @@ function createSingleGroupDiv(group) {
   // Create a div for the group name
   const groupName = document.createElement("div");
   groupName.className = "group_name";
+  groupName.dataset.groupid = group.id;
   groupName.textContent = group.group_leader;
 
   // Create a div for the delete button
@@ -97,6 +123,4 @@ function createNewGroupDiv() {
   // Append the groups box to the groups container
   const groupsContainer = document.getElementById("groups_container");
   groupsContainer.insertBefore(groupsBox, groupsContainer.firstChild);
-
-  // groupsContainer.appendChild(groupsBox);
 }

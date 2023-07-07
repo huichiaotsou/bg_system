@@ -14,7 +14,10 @@ const {
   getUserCheckin,
 } = require("./server/controller/checkin");
 const { updateVenueDistribution } = require("./server/controller/venue");
-const { getExistingGroups } = require("./server/controller/groups");
+const {
+  getExistingGroups,
+  saveNewGroup,
+} = require("./server/controller/groups");
 
 // Import middlewares
 const {
@@ -59,6 +62,7 @@ app.post("/venue", verifyIsAdmin, updateVenueDistribution);
 
 // Groups
 app.get("/groups", getExistingGroups);
+app.post("/groups", saveNewGroup);
 
 // Error handling
 const { errorHandler } = require("./server/middleware/error");
