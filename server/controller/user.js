@@ -42,7 +42,7 @@ const getUserWithID = async (req, res, next) => {
   } else {
     [dbUser] = await User.getUserWithID(userID);
   }
-
+  dbUser.registered = true;
   res.send(dbUser);
 };
 

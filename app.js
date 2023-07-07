@@ -59,8 +59,8 @@ app.post("/login", getRegisteredUser); // Login
 app.get("/user/:userID", verifyUserIdentity, getUserWithID); // Get user with ID
 app.get("/user", verifyUserIdentity, getAllUsers); // Get all users
 app.post("/user", saveUserDetails); // Create new user
-app.get("/user/:userID", verifyUserIdentity); // TODO: update user
-app.get("/user/:userID", verifyUserIdentity); // TODO: delete user
+app.patch("/user/:userID", verifyUserIdentity); // TODO: update user
+app.delete("/user/:userID", verifyUserIdentity); // TODO: delete user
 
 // Admin
 // app.get("/admin", verifyUserIdentity, verifyIsAdmin, getAllAdmins); // Get user with ID
