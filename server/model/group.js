@@ -1,5 +1,16 @@
 const { executeQuery } = require("./conn");
 
+// Get all the groups
+const getExistingGroups = async () => {
+  try {
+    const query = "SELECT * FROM belong_groups";
+    return await executeQuery(query);
+  } catch (err) {
+    console.error("Error getting groups:", err);
+    next(err);
+  }
+};
+
 // Store group details in the groups table
 const createGroup = async (groupName) => {
   try {
@@ -37,6 +48,7 @@ const saveGroupMember = async (userGroup) => {
 };
 
 module.exports = {
+  getExistingGroups,
   createGroup,
   saveGroupMember,
 };

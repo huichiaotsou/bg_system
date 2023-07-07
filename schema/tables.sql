@@ -1,6 +1,7 @@
 CREATE TABLE belong_groups (
     id              SERIAL          PRIMARY KEY,
-    group_leader    VARCHAR(50)     NOT NULL DEFAULT ''
+    group_leader    VARCHAR(50)     NOT NULL DEFAULT '',
+    UNIQUE(group_leader)
 );
 
 -- Define the users table to store the user's basic information
