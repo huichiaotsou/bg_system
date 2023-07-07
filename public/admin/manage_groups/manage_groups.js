@@ -55,7 +55,6 @@ function deleteGroup(event) {
       }
     })
     .then((data) => {
-      console.log("deleted group ID: ", data.groupID);
       deleteGroupFromView(event);
     })
     .catch((error) => {

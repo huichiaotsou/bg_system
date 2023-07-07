@@ -3,7 +3,7 @@ async function checkLogin() {
 
   if (user == null) {
     // If localstorage has no user logged in record, forward to login page
-    window.location.href = "/login.html";
+    window.location.href = "/";
   }
 
   if (user.registered) {

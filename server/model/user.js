@@ -2,7 +2,10 @@ const { executeQuery } = require("./conn");
 
 const getUserWithEmail = async (email) => {
   try {
-    const query = "SELECT * FROM users WHERE email = $1";
+    const query =
+      "SELECT * FROM users " +
+      "JOIN group_members ON group_members.user_id = users.id " +
+      "WHERE email = $1";
     const values = [email];
     return await executeQuery(query, values);
   } catch (err) {
@@ -12,7 +15,10 @@ const getUserWithEmail = async (email) => {
 
 const getUserWithID = async (userID) => {
   try {
-    const query = "SELECT * FROM users WHERE id = $1";
+    const query =
+      "SELECT * FROM users " +
+      "JOIN group_members ON group_members.user_id = users.id " +
+      "WHERE id = $1";
     const values = [userID];
     return await executeQuery(query, values);
   } catch (err) {

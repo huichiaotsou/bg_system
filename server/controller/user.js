@@ -26,6 +26,7 @@ const getRegisteredUser = async (req, res, next) => {
     response.user.user_define_name = user.user_define_name;
     response.user.notes = user.notes;
     response.user.is_admin = user.is_admin;
+    response.user.group_id = user.group_id;
   }
 
   res.status(200).send(response);
@@ -59,8 +60,9 @@ const saveUserDetails = async (req, res, next) => {
       is_admin: false,
     };
 
+    const groupID = req.body.groupID;
+
     const userID = await User.saveUser(userDetails);
-    const groupID = await Group.createGroup(req.body.groupLeader);
 
     const userGroup = {
       userID,

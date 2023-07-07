@@ -10,8 +10,7 @@
   }
   
   input[type="text"],
-  input[type="tel"],
-  select {
+  input[type="tel"] {
     border-radius: 30px;
     line-height: 2;
     width: 97%;
@@ -20,11 +19,16 @@
     margin-right: 53px;
   }
 
-  select {
-    height: 40px;
-    width: 100%;
+  #group_select_container {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
   }
-  
+
+  #select_group_title {
+    margin-right: 3%; 
+  }
+
   input[type="submit"] {
     font-size: large;
     border-radius: 30px;
