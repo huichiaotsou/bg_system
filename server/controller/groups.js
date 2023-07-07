@@ -33,6 +33,9 @@ const deleteGroup = async (req, res, next) => {
     await Group.deleteGroup(groupID);
     res.status(200).send({ groupID });
   } catch (err) {
+    if (err.detail.includes("is still referenced from table")) {
+      res.status(409).send("Key is still referenced from another table.");
+    }
     next(err);
   }
 };

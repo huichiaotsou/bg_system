@@ -50,7 +50,11 @@ function deleteGroup(event) {
       if (response.ok) {
         return response.json();
       } else {
-        alert("小組刪除失敗");
+        let errorText = "刪除失敗";
+        if (response.status == 409) {
+          errorText += "，小組仍有組員，請更新小組員資料";
+        }
+        alert(errorText);
         throw new Error("Failed to delete groups");
       }
     })
