@@ -49,10 +49,11 @@ function sendCheckinData() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
+        alert("簽到成功");
         window.location.href = "/dashboard.html";
       }
       if (xhr.status === 409) {
-        alert("登記失敗，今日已登記。如欲修改請洽管理員");
+        alert("簽到失敗，今日已登記。如欲修改請洽管理員");
       }
     }
   };
