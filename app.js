@@ -17,6 +17,7 @@ const { updateVenueDistribution } = require("./server/controller/venue");
 const {
   getExistingGroups,
   saveNewGroup,
+  deleteGroup,
 } = require("./server/controller/groups");
 
 // Import middlewares
@@ -65,6 +66,7 @@ app.post("/venue", verifyIsAdmin, updateVenueDistribution);
 // Groups
 app.get("/groups", getExistingGroups);
 app.post("/groups", saveNewGroup);
+app.delete("/groups/:groupID", deleteGroup);
 
 // Error handling
 const { errorHandler } = require("./server/middleware/error");

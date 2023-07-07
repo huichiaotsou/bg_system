@@ -25,10 +25,42 @@ function loadExistingGroups() {
     });
 }
 
-function deleteGroup(event) {
+function deleteGroupFromView(event) {
   const groupBox = event.target.parentNode;
   groupBox.parentNode.removeChild(groupBox);
-  // TODO: remove group from the database
+}
+
+function deleteGroup(event) {
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorageUser.complete_google_jwt;
+
+  // Get group ID to be deleted
+  const groupElement = event.target.previousElementSibling;
+  const groupID = groupElement.getAttribute("data-groupid");
+
+  // Remove group from the database
+  fetch(`/groups/${groupID}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert("小組刪除失敗");
+        throw new Error("Failed to delete groups");
+      }
+    })
+    .then((data) => {
+      console.log("deleted group ID: ", data.groupID);
+      deleteGroupFromView(event);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function createGroup(event) {
@@ -38,7 +70,7 @@ function createGroup(event) {
   const inputField = event.target.previousElementSibling;
   const groupLeaderName = inputField.value;
 
-  // TODO: add group to the database
+  // Add group to the database
   fetch("/groups", {
     method: "POST",
     headers: {
@@ -65,7 +97,7 @@ function createGroup(event) {
     });
 
   // Replace the confirmed div, and create the group with successful insertion
-  deleteGroup(event);
+  deleteGroupFromView(event);
 }
 
 function createGroupsDivs(groups) {

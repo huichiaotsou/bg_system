@@ -27,7 +27,17 @@ const saveNewGroup = async (req, res, next) => {
   }
 };
 
+const deleteGroup = async (req, res, next) => {
+  try {
+    const { groupID } = req.params;
+    await Group.deleteGroup(groupID);
+    res.status(200).send({ groupID });
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports = {
   getExistingGroups,
   saveNewGroup,
+  deleteGroup,
 };

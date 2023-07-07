@@ -47,8 +47,20 @@ const saveGroupMember = async (userGroup) => {
   }
 };
 
+const deleteGroup = async (groupID) => {
+  try {
+    const query = "DELETE FROM belong_groups WHERE id = $1 ";
+    const values = [groupID];
+    await executeQuery(query, values);
+  } catch (err) {
+    console.error("Error deleting group:", err);
+    throw err;
+  }
+};
+
 module.exports = {
   getExistingGroups,
   createGroup,
   saveGroupMember,
+  deleteGroup,
 };
