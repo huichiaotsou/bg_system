@@ -22,6 +22,9 @@ const { updateAdmins } = require("./server/controller/admin");
 const {
   saveUserCheckin,
   getUserCheckin,
+  getCheckinByDay,
+  updateValidationStatus,
+  updateCheckinVenue,
 } = require("./server/controller/checkin");
 const { updateVenueDistribution } = require("./server/controller/venue");
 const {
@@ -49,6 +52,7 @@ app.use(Paths.register); // USER - user registeration
 app.use(Paths.admin); // ADMIN
 app.use(Paths.adminManageAdmin); // ADMIN - manage admins
 app.use(Paths.adminManageGroups); // ADMIN - manage groups
+app.use(Paths.adminManageCheckins); // ADMIN - manage groups
 app.use(Paths.adminVenueDistribution); // ADMIN - venue distribution
 
 app.use(Paths.dashboard); // DASHBOARD
@@ -70,7 +74,15 @@ app.post("/admin", verifyIsUser, verifyIsAdmin, updateAdmins); // Update a list 
 
 // Checkin
 app.post("/checkin", verifyIsUser, saveUserCheckin); // User checkin venue usage
+app.patch(
+  "/checkin/validation",
+  verifyIsUser,
+  verifyIsAdmin,
+  updateValidationStatus
+); // update checkin validation status
+app.patch("/checkin/venue", verifyIsUser, verifyIsAdmin, updateCheckinVenue); // update checkin venue
 app.get("/checkin/user/:userID", verifyIsUser, getUserCheckin); // Get checkin records by user ID
+app.get("/checkin/date/:date", verifyIsUser, getCheckinByDay); // Get checkin records by user ID
 
 // Venue
 app.post("/venue", verifyIsUser, verifyIsAdmin, updateVenueDistribution); // Update venue distribution

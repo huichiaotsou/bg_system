@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+  <link rel="stylesheet" type="text/css" href="/manage_checkins/manage_checkins.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="checkLogin(); setToday(); loadCheckinRecordsByDay();">
+  <div id="header1">Taipei Campus</div>
+  <div id="header2">場地使用紀錄系統</div>
+
+  <div id="checkin_record_title">管理簽到紀錄</div>
+
+  <div id="checkin_day_div" onchange="loadCheckinRecordsByDay();">
+    <input type="date" name="" id="checkin_day">
+    <button id="today_button" class="btn btn-sm btn-outline-dark" type="button" onclick="setToday(); loadCheckinRecordsByDay();">
+      今天
+    </button>
+  </div>
+  
+  <div id="records_container">
+    <div id="record_card_title">
+      <div class="record_box">
+        <div class="validation">
+          審核狀態
+        </div>
+        <div class="group" id="group_title">
+          小組
+        </div>
+        <div class="venue" id="venue_title">
+          使用場地
+        </div>
+        <div class="feedback_box">
+          反饋
+        </div>
+      </div>
+    </div>
+    <!-- <div class="record_card">
+      <div class="record_box">
+        <div class="validation pending">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown" data-checkinid="1">
+              待審核
+            </button>
+            <div class="group_options_container" class="dropdown-menu" >
+              <a class="dropdown-item" href="#" data-validationstatus="pending">待審核</a>
+              <a class="dropdown-item" href="#" data-validationstatus="validated">確認簽到</a>
+              <a class="dropdown-item" href="#" data-validationstatus="rejected">拒絕簽到</a>
+            </div>
+          </div>
+        </div>
+        <div class="group" data-groupid="1">
+          鄒惠喬 Aaron
+        </div>
+        <div class="venue" data-venueid="1">
+          Living Room
+        </div>
+        <div class="feedback_box">
+          <button class="btn btn-sm btn-outline-dark" data-checkinid="1" data-feedback="null" type="button">
+            反饋
+          </button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+</body>
+<script src="/manage_checkins/manage_checkins.js"></script>
+<script src="/authentication.js"></script>
+<script src="/utils.js"></script>
+
+
+</html>

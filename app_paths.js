@@ -11,6 +11,9 @@ const adminManageAdmin = express.static(
 const adminManageGroups = express.static(
   path.join(__dirname, "public", "admin", "manage_groups")
 );
+const adminManageCheckins = express.static(
+  path.join(__dirname, "public", "admin", "manage_checkins")
+);
 const adminVenueDistribution = express.static(
   path.join(__dirname, "public", "admin", "venue_distribution")
 );
@@ -29,6 +32,7 @@ module.exports = {
   admin,
   adminManageAdmin,
   adminManageGroups,
+  adminManageCheckins,
   adminVenueDistribution,
   dashboard,
   dashboardCheckin,

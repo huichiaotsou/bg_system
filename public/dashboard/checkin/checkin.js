@@ -31,6 +31,7 @@ function sendCheckinData() {
     userID: user.id,
     email: user.email,
     venueID: selectedVenue.dataset.venueid,
+    groupID: user.group_id,
     checkinDate: getCurrDateString(),
   };
 

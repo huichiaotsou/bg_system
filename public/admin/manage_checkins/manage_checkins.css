@@ -1,0 +1,120 @@
+#checkin_record_title {
+    height: 5.5vh;
+    margin: -2vh auto 3vh;
+    width: 45%;
+    border-bottom: 1px solid rgb(194, 192, 192);
+    font-size: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#checkin_day_div {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+}
+
+#checkin_day {
+    width: 30%;
+    font-size: 16px;
+}
+
+#today_button {
+    margin-left: 3px;
+}
+
+/* ========== Records Card ========== */
+
+#records_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5vh;
+}
+
+#record_card_title{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 7px;
+    margin-bottom: 7px;
+    height: 2vh;
+    color: darkgray
+}
+
+.record_card{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.record_box {
+    flex: 95%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    border-width: 80%;
+    width: 95%;
+    margin: 0 auto 0px;
+}
+
+.validation {
+    flex: 23%;
+    font-size: medium;
+    padding-left: 5px;
+
+
+    /* align left */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#group_title {
+    font-size: medium;
+}
+
+.group {
+    flex: 29%;
+    font-size: small;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+#venue_title {
+    font-size: medium;
+}
+
+.venue {
+    flex: 29%;
+    font-size: small;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback_box {
+    flex: 19%;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== Records Card Ends ========== */

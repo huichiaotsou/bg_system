@@ -4,13 +4,14 @@ CREATE TABLE belong_groups (
     UNIQUE(group_leader)
 );
 
--- Default group
+-- Default groups
 INSERT INTO belong_groups (group_leader) VALUES ('鄒惠喬 Aaron');
+INSERT INTO belong_groups (group_leader) VALUES ('周德瑄 Dora');
 
 -- Define the users table to store the user's basic information
 CREATE TABLE users (
     id                      SERIAL       PRIMARY KEY,
-    group_id                INT          REFERENCES belong_groups (id),
+    group_id                INT          NOT NULL REFERENCES belong_groups (id),
     given_name_google       VARCHAR(50)  NOT NULL DEFAULT '',
     family_name_google      VARCHAR(50)  NOT NULL DEFAULT '',
     user_define_name        VARCHAR(50)  NOT NULL DEFAULT '',
@@ -42,11 +43,12 @@ CREATE TABLE checkins (
     id                  SERIAL              PRIMARY KEY,
     user_id             INT                 NOT NULL REFERENCES users(id),
     venue_id            INT                 NOT NULL REFERENCES venues(id),
+    group_id            INT                 NOT NULL REFERENCES belong_groups(id),
     checkin_date        DATE                NOT NULL,
     validation_status   VALIDATION_STATUS   NOT NULL DEFAULT 'pending',
     validated_by        INT                 REFERENCES users(id),
-    examination_result  TEXT,
-    UNIQUE(user_id, checkin_date)
+    feedback            TEXT,
+    UNIQUE(group_id, checkin_date)
 );
 
 -- Keep track of which person belongs to which group, for fast filling in group selection at front end

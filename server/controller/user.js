@@ -48,7 +48,9 @@ const getUserWithID = async (req, res, next) => {
 
 const saveUserDetails = async (req, res, next) => {
   try {
+    const groupID = req.body.groupID;
     const userDetails = {
+      group_id: groupID,
       given_name_google: req.body.given_name_google,
       family_name_google: req.body.family_name_google,
       user_define_name: req.body.user_define_name,
@@ -60,8 +62,6 @@ const saveUserDetails = async (req, res, next) => {
       is_admin: false,
     };
 
-    const groupID = req.body.groupID;
-
     const userID = await User.saveUser(userDetails);
 
     const userGroup = {
@@ -71,7 +71,7 @@ const saveUserDetails = async (req, res, next) => {
 
     await Group.saveGroupMember(userGroup);
 
-    res.sendStatus(200);
+    res.status(200).send({ status: "ok" });
   } catch (err) {
     next(err);
   }

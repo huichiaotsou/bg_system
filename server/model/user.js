@@ -30,6 +30,7 @@ const getUserWithID = async (userID) => {
 const saveUser = async (userDetails) => {
   try {
     const {
+      group_id,
       given_name_google,
       family_name_google,
       user_define_name,
@@ -42,11 +43,12 @@ const saveUser = async (userDetails) => {
     } = userDetails;
 
     const query =
-      "INSERT INTO users (given_name_google, family_name_google, user_define_name, phone, profile_picture_link, email, complete_google_jwt, notes, is_admin) " +
-      "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) " +
+      "INSERT INTO users (group_id, given_name_google, family_name_google, user_define_name, phone, profile_picture_link, email, complete_google_jwt, notes, is_admin) " +
+      "VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) " +
       "RETURNING id";
 
     const values = [
+      group_id,
       given_name_google,
       family_name_google,
       user_define_name,
