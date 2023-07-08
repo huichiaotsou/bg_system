@@ -1,95 +1,180 @@
-#current_admin_title {
-    height: 6vh;
-    margin: -2vh auto 15px;
-    width: 45%;
+#checkin_record_title {
+    height: 5.5vh;
+    margin: -2vh auto -10px;
+    width: 37%;
     border-bottom: 1px solid rgb(194, 192, 192);
+    font-size: 26px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#records_container{
-    margin-bottom: 25vh;
+/* ========== Title Selection Bar ========== */
+#group_month_selection{
+    display: flex;
+
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+}
+
+#group_select {
+    /* flex: 40%; */
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+#month_select {
+    /* flex: 60%; */
+
+    /* align left
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 4%; */
+}
+/* ========== Title Selection Bar Ends ========== */
+
+
+/* ========== Records Card ========== */
+
+#records_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#record_card_title{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 7px;
+    /* border-bottom: 1px dotted grey; */
+    margin-bottom: 7px;
+    height: 2vh;
+    color: darkgray
+}
+
+.record_card{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.pending {
+    /* border style */
+    border-left: 7px solid #E9D502;
+    color: #E9D502;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.validated {
+    /* border style */
+    border-left: 7px solid #34B233;
+    color: #34B233;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.rejected {
+    /* border style */
+    border-left: 7px solid #a30202;
+    color: #a30202;
+    border-radius: 10px;
+    font-weight: 700;
 }
 
 .record_box {
+    flex: 95%;
+    height: 6vh;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px dotted rgb(111, 111, 111);
     border-width: 80%;
-    width: 80%;
+    width: 95%;
     margin: 0 auto 0px;
 }
 
-.checkbox {
+/* flex proportion */
+
+.validation {
     flex: 20%;
     font-size: medium;
+    padding-left: 5px;
 
-    /* center */
+    /* align left */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.username {
-    flex: 30%;
-
-    font-size: small;
-
-    /* center */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#emailtitle{
-    font-size: large;
-}
-
-.useremail {
-    flex: 50%;
-
-    font-size: small;
-
-    /* center */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.username {
-    height: 3.5vh;
-    margin-top: 5px;
-    margin-bottom: 5px;
+.checkin_date {
+    flex: 10%;
     font-size: medium;
 
-    /* Center */
+    /* center */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#page_end_buttons{
-    width: 80%;
-    display: flex;
-    flex-direction: row;
+.signer {
+    flex: 30%;
+    font-size: medium;
 
-    position: fixed;
-    bottom: 5vh;
-    transform: translateX(13%);
-}
-
-#add_admin_button {
-    flex: 100%;
-    background-color: #FFCB32;
-    height: 6vh;
-    margin: 20px;
-    border-radius: 30px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    
-    /* Center */
+    /* center */
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.venue {
+    flex: 40%;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== Records Card Ends ========== */
+
+/* ========== Feedback Box ========== */
+
+.feedback_box {
+    flex: 5%;
+    height: 25px;
+    width: 25px;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback_mark {
+    height: 17px;
+    width: 17px;
+    font-size: 15px;
+    background-color: #ffffff;
+    margin-right: 7px;
+    border: 2px solid #a30202;
+    color: #a30202;
+    border-radius: 50%;
+    font-weight: 700;
+
+    padding-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+/* ========== Feedback Box Ends ========== */

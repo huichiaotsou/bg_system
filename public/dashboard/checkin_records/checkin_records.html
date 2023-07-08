@@ -2,6 +2,10 @@
 <html>
 <head>
   <title>Taipei Campus 場地使用紀錄系統</title>
+  
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
   <link rel="stylesheet" type="text/css" href="/checkin_records/checkin_records.css">
   <link rel="stylesheet" type="text/css" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,36 +14,129 @@
   <div id="header1">Taipei Campus</div>
   <div id="header2">場地使用紀錄系統</div>
 
-  <div id="current_admin_title">簽到紀錄</div>
+  <div id="checkin_record_title">簽到紀錄</div>
   
+  <div id="group_month_selection">
+    <div id="group_select">
+      <div class="dropdown">
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="groupleader" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          小組
+        </button>
+        <div id="group_options_container" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#" data-groupid="1">鄒惠喬 Aaron</a>
+          <a class="dropdown-item" href="#" data-groupid="2">周德瑄 Dora</a>
+          <a class="dropdown-item" href="#" data-groupid="3">曾靜芳 Lia</a>
+        </div>
+      </div>
+    </div>
+    <div id="month_select">
+      <div class="dropdown">
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="month" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          月份
+        </button>
+        <div id="group_options_container" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#" data-month="3">3月</a>
+          <a class="dropdown-item" href="#" data-month="4">4月</a>
+          <a class="dropdown-item" href="#" data-month="5">5月</a>
+          <a class="dropdown-item" href="#" data-month="6">6月</a>
+          <a class="dropdown-item" href="#" data-month="7">7月</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="records_container">
-
-    <div class="record_box">
-      <div class="checkin_date">
-        簽到日期
+    <div id="record_card_title">
+      <div class="record_box">
+        <div class="validation">
+          狀態
+        </div>
+        <div class="checkin_date">
+          日期
+        </div>
+        <div class="signer">
+          簽到人
+        </div>
+        <div class="venue">
+          使用場地
+        </div>
       </div>
-      <div class="checkbox">
-        小組
-      </div>
-      <div class="username">
-        使用場地
-      </div>
-      <div class="useremail">
-        簽到人
-      </div>
-      <div class="useremail">
-        審核狀態
+      <div class="feedback_box">
+        <!-- <div class="feedback_mark">
+          !
+        </div> -->
       </div>
     </div>
-
-  </div>
-
-  <div id="page_end_buttons">
-    <div id="add_admin_button" onclick="setAdmins()">
-      確認修改
+    <div class="record_card">
+      <div class="record_box">
+        <div class="validation pending">
+          待審核
+        </div>
+        <div class="checkin_date">
+          7/22
+        </div>
+        <div class="signer">
+          鄒惠喬
+        </div>
+        <div class="venue">
+          Glassroom
+        </div>
+      </div>
+      <div class="feedback_box">
+        <!-- <div class="feedback_mark">
+          !
+        </div> -->
+      </div>
+    </div>
+    <div class="record_card">
+      <div class="record_box">
+        <div class="validation validated">
+          通過
+        </div>
+        <div class="checkin_date">
+          7/15
+        </div>
+        <div class="signer">
+          鄒惠喬
+        </div>
+        <div class="venue">
+          Glassroom
+        </div>
+      </div>
+      <div class="feedback_box">
+        <div class="feedback_mark">
+          !
+        </div>
+      </div>
+    </div>
+    <div class="record_card">
+      <div class="record_box">
+        <div class="validation rejected">
+          不通過
+        </div>
+        <div class="checkin_date">
+          7/8
+        </div>
+        <div class="signer">
+          鄒惠喬
+        </div>
+        <div class="venue">
+          Glassroom
+        </div>
+      </div>
+      <div class="feedback_box">
+        <!-- <div class="feedback_mark">
+          !
+        </div> -->
+      </div>
     </div>
   </div>
 
+
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
 </body>
 <script src="/checkin_records/checkin_records.js"></script>
 <script src="/authentication.js"></script>
