@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  <link rel="stylesheet" type="text/css" href="/checkin_records/checkin_records.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="checkLogin(); loadCheckinRecordsByUser()">
+  <div id="header1">Taipei Campus</div>
+  <div id="header2">場地使用紀錄系統</div>
+
+  <div id="current_admin_title">簽到紀錄</div>
+  
+  <div id="records_container">
+
+    <div class="record_box">
+      <div class="checkin_date">
+        簽到日期
+      </div>
+      <div class="checkbox">
+        小組
+      </div>
+      <div class="username">
+        使用場地
+      </div>
+      <div class="useremail">
+        簽到人
+      </div>
+      <div class="useremail">
+        審核狀態
+      </div>
+    </div>
+
+  </div>
+
+  <div id="page_end_buttons">
+    <div id="add_admin_button" onclick="setAdmins()">
+      確認修改
+    </div>
+  </div>
+
+</body>
+<script src="/checkin_records/checkin_records.js"></script>
+<script src="/authentication.js"></script>
+<script src="/utils.js"></script>
+
+
+</html>

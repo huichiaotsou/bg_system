@@ -62,7 +62,7 @@ app.use(Paths.dashboardCheckinRecords); // DASHBOARD - checkin records
 app.post("/login", getRegisteredUser); // Login
 app.post("/user", saveUserDetails); // Create new user
 app.get("/user/:userID", verifyIsUser, getUserWithID); // Get user with ID
-app.get("/user", verifyIsUser, verifyIsAdmin, getAllUsers); // Get all users
+app.get("/user", verifyIsUser, getAllUsers); // Get all users
 app.patch("/user/:userID", verifyIsUser, verifyIsAdmin); // TODO: update user
 
 // Admin
@@ -76,7 +76,7 @@ app.get("/checkin/user/:userID", verifyIsUser, getUserCheckin); // Get checkin r
 app.post("/venue", verifyIsUser, verifyIsAdmin, updateVenueDistribution); // Update venue distribution
 
 // Groups
-app.get("/groups", verifyIsUser, verifyIsAdmin, getExistingGroups); // Get all groups
+app.get("/groups", getExistingGroups); // Get all groups
 app.post("/groups", verifyIsUser, verifyIsAdmin, saveNewGroup); // Create a new group
 app.delete("/groups/:groupID", verifyIsUser, verifyIsAdmin, deleteGroup); // Delete a existing group
 

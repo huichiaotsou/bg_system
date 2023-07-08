@@ -19,7 +19,7 @@ const dashboardCheckin = express.static(
   path.join(__dirname, "public", "dashboard", "checkin")
 );
 const dashboardCheckinRecords = express.static(
-  path.join(__dirname, "public", "dashboard", "checkin-records")
+  path.join(__dirname, "public", "dashboard", "checkin_records")
 );
 
 module.exports = {

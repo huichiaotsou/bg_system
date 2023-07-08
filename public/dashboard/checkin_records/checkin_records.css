@@ -1,0 +1,95 @@
+#current_admin_title {
+    height: 6vh;
+    margin: -2vh auto 15px;
+    width: 45%;
+    border-bottom: 1px solid rgb(194, 192, 192);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#records_container{
+    margin-bottom: 25vh;
+}
+
+.record_box {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dotted rgb(111, 111, 111);
+    border-width: 80%;
+    width: 80%;
+    margin: 0 auto 0px;
+}
+
+.checkbox {
+    flex: 20%;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username {
+    flex: 30%;
+
+    font-size: small;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#emailtitle{
+    font-size: large;
+}
+
+.useremail {
+    flex: 50%;
+
+    font-size: small;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username {
+    height: 3.5vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: medium;
+
+    /* Center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#page_end_buttons{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    bottom: 5vh;
+    transform: translateX(13%);
+}
+
+#add_admin_button {
+    flex: 100%;
+    background-color: #FFCB32;
+    height: 6vh;
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    
+    /* Center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

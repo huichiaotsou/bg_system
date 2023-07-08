@@ -4,6 +4,9 @@ CREATE TABLE belong_groups (
     UNIQUE(group_leader)
 );
 
+-- Default group
+INSERT INTO belong_groups (group_leader) VALUES ('鄒惠喬 Aaron');
+
 -- Define the users table to store the user's basic information
 CREATE TABLE users (
     id                      SERIAL       PRIMARY KEY,

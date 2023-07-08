@@ -1,8 +1,8 @@
-function loadAllUsers() {
-  const localStorageUser = JSON.parse(localStorage.getItem("user"));
-  const token = localStorageUser.complete_google_jwt;
+function loadCheckinRecordsByUser() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user.complete_google_jwt;
 
-  fetch("/user", {
+  fetch(`/checkin/user/${user.id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +13,7 @@ function loadAllUsers() {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to get users");
+        throw new Error("Failed to get user checkins");
       }
     })
     .then((users) => {
@@ -65,44 +65,4 @@ function createSingleUserDiv(user) {
   // Append the groups box to the groups container
   const adminContainer = document.getElementById("admin_container");
   adminContainer.appendChild(userBox);
-}
-
-function setAdmins() {
-  // Get all the checkboxes that are checked
-  const checkboxes = document.querySelectorAll(
-    'input[type="checkbox"]:checked'
-  );
-
-  // Get userIDs
-  const userIDs = [];
-  checkboxes.forEach((checkbox) => {
-    const userID = checkbox.getAttribute("data-userid");
-    userIDs.push(userID);
-  });
-
-  const localStorageUser = JSON.parse(localStorage.getItem("user"));
-  const token = localStorageUser.complete_google_jwt;
-
-  fetch("/admin", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ userIDs }),
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to update admins");
-      }
-    })
-    .then((data) => {
-      // Handle the server's response
-      alert("修改完成");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
 }
