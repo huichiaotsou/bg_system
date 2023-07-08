@@ -1,9 +1,17 @@
 require("dotenv");
-const express = require("express");
-const path = require("path");
 const { SERVER_PORT } = process.env;
+const Paths = require("./app_paths");
 
-// Import controllers
+// ----------------------------------------
+//               Init App
+// ----------------------------------------
+const express = require("express");
+const app = express();
+app.listen(SERVER_PORT, () => console.log(`Running on port ${SERVER_PORT}`));
+
+// ----------------------------------------
+//         Controller / Middleware
+// ----------------------------------------
 const {
   getUserWithID,
   getRegisteredUser,
@@ -21,36 +29,35 @@ const {
   saveNewGroup,
   deleteGroup,
 } = require("./server/controller/groups");
-
-// Import middlewares
 const { verifyIsUser, verifyIsAdmin } = require("./server/middleware/user");
 
-// Init app
-const app = express();
-app.listen(SERVER_PORT, () => console.log(`Running on port ${SERVER_PORT}`));
-
-// Body parser
+// ----------------------------------------
+//              Body Parse
+// ----------------------------------------
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Static directories
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "public", "admin")));
-app.use(
-  express.static(path.join(__dirname, "public", "admin", "manage_admin"))
-);
-app.use(
-  express.static(path.join(__dirname, "public", "admin", "manage_groups"))
-);
-app.use(
-  express.static(path.join(__dirname, "public", "admin", "venue_distribution"))
-);
-app.use(express.static(path.join(__dirname, "public", "checkin")));
-app.use(express.static(path.join(__dirname, "public", "dashboard")));
-app.use(express.static(path.join(__dirname, "public", "login")));
-app.use(express.static(path.join(__dirname, "public", "register")));
+// ----------------------------------------
+//            Static Directories
+// ----------------------------------------
+app.use(Paths.public); // PUBLIC
 
+app.use(Paths.login); // USER - login
+app.use(Paths.register); // USER - register
+
+app.use(Paths.admin); // ADMIN
+app.use(Paths.adminManageAdmin); // ADMIN - manage admins
+app.use(Paths.adminManageGroups); // ADMIN - manage groups
+app.use(Paths.adminVenueDistribution); // ADMIN - venue distribution
+
+app.use(Paths.dashboard); // DASHBOARD
+app.use(Paths.dashboardCheckin); // DASHBOARD - checkin
+app.use(Paths.dashboardCheckinRecords); // DASHBOARD - checkin records
+
+// ----------------------------------------
+//                  Routes
+// ----------------------------------------
 // User
 app.post("/login", getRegisteredUser); // Login
 app.post("/user", saveUserDetails); // Create new user
@@ -74,5 +81,4 @@ app.post("/groups", verifyIsUser, verifyIsAdmin, saveNewGroup); // Create a new 
 app.delete("/groups/:groupID", verifyIsUser, verifyIsAdmin, deleteGroup); // Delete a existing group
 
 // Error handling
-const { errorHandler } = require("./server/middleware/error");
-app.use(errorHandler);
+app.use(require("./server/middleware/error").errorHandler);
