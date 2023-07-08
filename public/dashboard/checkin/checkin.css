@@ -13,7 +13,9 @@
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 5%;
+  margin-bottom: 3%;
 }
 
 .phone {
@@ -31,7 +33,6 @@
 
 }
 
-
 .venue_container {
     display: flex;
     flex-wrap: wrap;
@@ -41,22 +42,8 @@
     margin-bottom: 20px;
   }
   
-  .venue_option {
-    font-size: small;
-    font-weight: 700;
-    text-align: center;
-    width: 65px;
-    height: 30px;
-    background-color: #bababa;
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding: 10px;
-    border-radius: 30px;
-    border: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  #venue_select {
+    margin-left: 5%;
   }
 
   .button {
@@ -73,6 +60,6 @@
     cursor: pointer;
 }
   
-#selected_venue {
+/* #selected_venue {
   background-color: #FFCB32;
-}
+} */

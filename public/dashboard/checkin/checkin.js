@@ -1,24 +1,20 @@
 function fillUserData() {
   const user = JSON.parse(localStorage.getItem("user"));
   const name = user.user_define_name;
-  const phone = user.phone;
 
   document.getElementById("borrower").innerHTML += name;
-  document.getElementById("phone").innerHTML += phone;
 }
 
 function addButtonEventListener() {
-  const buttons = document.getElementsByClassName("venue_option");
+  const buttons = document.getElementsByClassName("dropdown-item");
 
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function () {
-      // Remove 'selected_venue' id from all buttons
-      for (var j = 0; j < buttons.length; j++) {
-        buttons[j].removeAttribute("id");
-      }
-
-      // Add 'selected_venue' id to the clicked button
-      this.id = "selected_venue";
+    buttons[i].addEventListener("click", function (event) {
+      const venueID = event.target.dataset.venueid;
+      const venueName = event.target.textContent;
+      const selectedVenue = document.getElementById("selected_venue");
+      selectedVenue.dataset.venueid = venueID;
+      selectedVenue.textContent = venueName;
     });
   }
 }
@@ -50,7 +46,7 @@ function sendCheckinData() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         alert("簽到成功");
-        window.location.href = "/dashboard.html";
+        window.location.href = "/checkin_records.html";
       }
       if (xhr.status === 409) {
         alert("簽到失敗，今日已登記。如欲修改請洽管理員");

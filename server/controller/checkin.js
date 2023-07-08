@@ -11,7 +11,7 @@ const saveUserCheckin = async (req, res, next) => {
     await Checkin.saveCheckin(checkinDetails);
     res.sendStatus(200);
   } catch (err) {
-    if (err.code == 23505) {
+    if (err.detail.includes("already exists.")) {
       res.status(409).send("record exists");
     }
   }
