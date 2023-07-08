@@ -11,10 +11,18 @@
   <div id="header2">場地使用紀錄系統</div>
 
   <!-- Form for checking in -->
-  <div class="title" id="borrower">借用人：</div>
-  <div class="title" id="phone">借用人電話：</div>
+  <div id="title_container">
+    <div class="title_box">
+      <div class="signer">簽到人</div>
+      <div class="phone">電話</div>
+    </div>
+    <div class="title_box">
+      <div class="signer" id="borrower"></div>
+      <div class="phone" id="phone"></div>
+    </div>
+  </div>
   
-  <div class="title">今日使用場地：</div>
+  <div id="venue_title">今日使用場地</div>
   <div class="venue_container">
     <!-- venue IDs are hard coded and they coincide with the IDs in the DB -->
     <div class="venue_option" data-venueid="1">Living Room</div>

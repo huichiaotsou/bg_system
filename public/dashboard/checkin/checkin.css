@@ -1,10 +1,36 @@
-.title{
-    font-size: large;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    display: block;
+#title_container {
+ display: flex;
+ flex-direction: column;
 }
+
+.title_box {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.signer {
+  flex: 25%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone {
+  flex: 75%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#venue_title {
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+  margin-left: 5%;
+
+}
+
 
 .venue_container {
     display: flex;

@@ -104,7 +104,7 @@
 /* flex proportion */
 
 .validation {
-    flex: 20%;
+    flex: 25%;
     font-size: medium;
     padding-left: 5px;
 
@@ -135,7 +135,7 @@
 }
 
 .venue {
-    flex: 40%;
+    flex: 35%;
     font-size: medium;
 
     /* center */

@@ -34,13 +34,17 @@ INSERT INTO venues (venue_name) VALUES ('eHQ');
 INSERT INTO venues (venue_name) VALUES ('Kids Central');
 INSERT INTO venues (venue_name) VALUES ('Gather');
 
+CREATE TYPE VALIDATION_STATUS AS ENUM (
+    'validated', 'rejected', 'pending'
+);
+
 CREATE TABLE checkins (
-    id                  SERIAL          PRIMARY KEY,
-    user_id             INT             NOT NULL REFERENCES users(id),
-    venue_id            INT             NOT NULL REFERENCES venues(id),
-    checkin_date        DATE            NOT NULL,
-    validated           BOOLEAN         NOT NULL DEFAULT false,
-    validated_by        INT             REFERENCES users(id),
+    id                  SERIAL              PRIMARY KEY,
+    user_id             INT                 NOT NULL REFERENCES users(id),
+    venue_id            INT                 NOT NULL REFERENCES venues(id),
+    checkin_date        DATE                NOT NULL,
+    validation_status   VALIDATION_STATUS   NOT NULL DEFAULT 'pending',
+    validated_by        INT                 REFERENCES users(id),
     examination_result  TEXT,
     UNIQUE(user_id, checkin_date)
 );
