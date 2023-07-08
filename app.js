@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(Paths.public); // PUBLIC
 
 app.use(Paths.login); // USER - login
-app.use(Paths.register); // USER - register
+app.use(Paths.register); // USER - user registeration
 
 app.use(Paths.admin); // ADMIN
 app.use(Paths.adminManageAdmin); // ADMIN - manage admins
@@ -81,4 +81,5 @@ app.post("/groups", verifyIsUser, verifyIsAdmin, saveNewGroup); // Create a new 
 app.delete("/groups/:groupID", verifyIsUser, verifyIsAdmin, deleteGroup); // Delete a existing group
 
 // Error handling
-app.use(require("./server/middleware/error").errorHandler);
+const { errorHandler } = require("./server/middleware/error");
+app.use(errorHandler);
