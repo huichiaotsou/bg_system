@@ -1,8 +1,8 @@
-function loadCheckinRecordsByUser() {
+function loadCheckinRecordsByGroup() {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = user.complete_google_jwt;
 
-  fetch(`/checkin/user/${user.id}`, {
+  fetch(`/checkin/group/${user.group_id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -13,25 +13,25 @@ function loadCheckinRecordsByUser() {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Failed to get user checkins");
+        throw new Error("Failed to get group's checkin");
       }
     })
-    .then((users) => {
+    .then((data) => {
       // Handle the server's response
-      createUserDivs(users);
+      createCheckinDivs(data);
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-function createUserDivs(users) {
-  for (let i = 0; i < users.length; i++) {
-    createSingleUserDiv(users[i]);
+function createCheckinDivs(checkins) {
+  for (let i = 0; i < checkins.length; i++) {
+    createSingleCheckinDiv(checkins[i]);
   }
 }
 
-function createSingleUserDiv(user) {
+function createSingleCheckinDiv(checkin) {
   // Create a new div with the class "user_box"
   const userBox = document.createElement("div");
   userBox.className = "user_box";
