@@ -137,8 +137,8 @@ function createSingleCheckinDiv(checkin) {
   button.setAttribute("data-checkinid", checkin.checkin_id);
   const statusTranslation = {
     pending: "待審核",
-    validated: "確認簽到",
-    rejected: "拒絕簽到",
+    validated: "通過",
+    rejected: "撤銷",
   };
   button.textContent = statusTranslation[checkin.validation_status];
 
@@ -150,8 +150,8 @@ function createSingleCheckinDiv(checkin) {
   // Create the dropdown items
   const dropdownItems = [
     { text: "待審核", validationStatus: "pending" },
-    { text: "確認簽到", validationStatus: "validated" },
-    { text: "拒絕簽到", validationStatus: "rejected" },
+    { text: "通過", validationStatus: "validated" },
+    { text: "撤銷", validationStatus: "rejected" },
   ];
 
   dropdownItems.forEach((item) => {

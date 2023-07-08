@@ -69,13 +69,10 @@
 .validation {
     flex: 23%;
     font-size: medium;
-    padding-left: 5px;
 
-
-    /* align left */
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #group_title {
