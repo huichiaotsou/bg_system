@@ -77,7 +77,7 @@ const saveUser = async (userDetails) => {
 
 const getAllUsers = async () => {
   try {
-    const query = "SELECT * FROM users ";
+    const query = "SELECT * FROM users ORDER BY id";
     const values = [];
     return await executeQuery(query, values);
   } catch (err) {

@@ -65,9 +65,8 @@ function createSingleCheckinDiv(checkin) {
   // Create the checkin_date div element
   const checkinDate = document.createElement("div");
   checkinDate.className = "checkin_date";
-  const onlyDate = checkin.checkin_date.split("T");
-  const dateArray = onlyDate[0].split("-");
-  checkinDate.textContent = `${dateArray[1]}/${dateArray[2]}`;
+  const dateTime = new Date(checkin.checkin_date);
+  checkinDate.textContent = `${dateTime.getMonth() + 1}/${dateTime.getDate()}`;
 
   // Create the signer div element
   const signer = document.createElement("div");

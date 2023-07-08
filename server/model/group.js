@@ -3,7 +3,7 @@ const { executeQuery } = require("./conn");
 // Get all the groups
 const getExistingGroups = async () => {
   try {
-    const query = "SELECT * FROM belong_groups";
+    const query = "SELECT * FROM belong_groups ORDER BY id";
     return await executeQuery(query);
   } catch (err) {
     console.error("Error getting groups:", err);

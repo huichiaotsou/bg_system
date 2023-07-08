@@ -34,7 +34,8 @@ const getGroupCheckin = async (checkinRequest) => {
       JOIN venues v ON c.venue_id = v.id 
       WHERE EXTRACT(YEAR FROM c.checkin_date) = $1 
         AND EXTRACT(MONTH FROM c.checkin_date) = $2 
-        AND c.group_id = $3`;
+        AND c.group_id = $3 
+        ORDER BY c.checkin_date`;
     const values = [
       checkinRequest.year,
       checkinRequest.month,
@@ -54,7 +55,8 @@ const getCheckinByDay = async (date) => {
       "FROM checkins c " +
       "JOIN venues v ON c.venue_id = v.id " +
       "JOIN belong_groups bg ON c.group_id = bg.id " +
-      "WHERE c.checkin_date = $1 ";
+      "WHERE c.checkin_date = $1 " +
+      "ORDER BY c.checkin_date";
 
     const values = [date];
     return await executeQuery(query, values);
