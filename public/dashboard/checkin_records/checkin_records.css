@@ -24,15 +24,6 @@
     margin-right: 4%;
 }
 
-#month_select {
-    /* flex: 60%; */
-
-    /* align left
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 4%; */
-}
 /* ========== Title Selection Bar Ends ========== */
 
 
@@ -69,7 +60,7 @@
 
 .pending {
     /* border style */
-    border-left: 7px solid #E9D502;
+    border-left: 7px solid #dac803;
     color: #E9D502;
     border-radius: 10px;
     font-weight: 700;
@@ -171,7 +162,7 @@
     border-radius: 50%;
     font-weight: 700;
 
-    padding-top: 1px;
+    /* padding-top: 1px; */
     display: flex;
     align-items: center;
     justify-content: center;
