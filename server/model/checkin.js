@@ -26,18 +26,24 @@ const saveCheckin = async (checkinDetails) => {
   }
 };
 
-const getUserCheckin = async (checkinRequest) => {
+const getGroupCheckin = async (checkinRequest) => {
   try {
-    const query = "SELECT * FROM checkins WHERE user_id = $1 ";
+    let query = `SELECT c.validation_status, c.checkin_date, u.user_define_name AS user_name, v.venue_name, c.feedback 
+      FROM checkins c 
+      JOIN users u ON c.user_id = u.id 
+      JOIN venues v ON c.venue_id = v.id 
+      WHERE EXTRACT(YEAR FROM c.checkin_date) = $1 
+        AND EXTRACT(MONTH FROM c.checkin_date) = $2 
+        AND c.group_id = $3`;
+    const values = [
+      checkinRequest.year,
+      checkinRequest.month,
+      checkinRequest.groupID,
+    ];
 
-    if (checkinRequest.type == "today") {
-      query += "AND checkin_date = current_date";
-    }
-
-    const values = [checkinRequest.userID];
     return await executeQuery(query, values);
   } catch (err) {
-    console.error("Error while getting user checkin with user id:", err);
+    console.error("Error while getting group checkin with group id:", err);
   }
 };
 
@@ -81,7 +87,7 @@ const updateCheckinVenue = async (update) => {
 
 module.exports = {
   saveCheckin,
-  getUserCheckin,
+  getGroupCheckin,
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,

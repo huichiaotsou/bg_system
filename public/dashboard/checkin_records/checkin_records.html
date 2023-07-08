@@ -10,39 +10,28 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="checkLogin(); loadCheckinRecordsByUser()">
+<body onload="checkLogin(); loadCheckinRecordsByGroup(); createMonthOptions()">
   <div id="header1">Taipei Campus</div>
   <div id="header2">場地使用紀錄系統</div>
 
   <div id="checkin_record_title">簽到紀錄</div>
   
-  <div id="group_month_selection">
-    <div id="group_select">
-      <div class="dropdown">
-        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="groupleader" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          小組
-        </button>
-        <div id="group_options_container" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#" data-groupid="1">鄒惠喬 Aaron</a>
-          <a class="dropdown-item" href="#" data-groupid="2">周德瑄 Dora</a>
-          <a class="dropdown-item" href="#" data-groupid="3">曾靜芳 Lia</a>
-        </div>
-      </div>
-    </div>
-    <div id="month_select">
+  <div id="month_selection">
+    <!-- <div id="month_select">
       <div class="dropdown">
         <button class="btn btn-outline-dark dropdown-toggle" type="button" id="month" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           月份
         </button>
-        <div id="group_options_container" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#" data-month="3">3月</a>
-          <a class="dropdown-item" href="#" data-month="4">4月</a>
-          <a class="dropdown-item" href="#" data-month="5">5月</a>
-          <a class="dropdown-item" href="#" data-month="6">6月</a>
-          <a class="dropdown-item" href="#" data-month="7">7月</a>
+        <div id="month_options_container" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#" data-year="2023" data-month="5">2023 5月</a>
+          <a class="dropdown-item" href="#" data-year="2023" data-month="4">2023 4月</a>
+          <a class="dropdown-item" href="#" data-year="2023" data-month="3">2023 3月</a>
+          <a class="dropdown-item" href="#" data-year="2023" data-month="2">2023 2月</a>
+          <a class="dropdown-item" href="#" data-year="2023" data-month="1">2023 1月</a>
+          <a class="dropdown-item" href="#" data-year="2022" data-month="12">2022 12月</a>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div id="records_container">
@@ -62,12 +51,10 @@
         </div>
       </div>
       <div class="feedback_box">
-        <!-- <div class="feedback_mark">
-          !
-        </div> -->
+
       </div>
     </div>
-    <div class="record_card">
+    <!-- <div class="record_card">
       <div class="record_box">
         <div class="validation pending">
           審核中
@@ -83,9 +70,6 @@
         </div>
       </div>
       <div class="feedback_box">
-        <!-- <div class="feedback_mark">
-          !
-        </div> -->
       </div>
     </div>
     <div class="record_card">
@@ -104,7 +88,7 @@
         </div>
       </div>
       <div class="feedback_box">
-        <div class="feedback_mark">
+        <div class="feedback_mark" onclick="alert('feedback: 窗簾沒有拉回來')">
           !
         </div>
       </div>
@@ -125,11 +109,8 @@
         </div>
       </div>
       <div class="feedback_box">
-        <!-- <div class="feedback_mark">
-          !
-        </div> -->
       </div>
-    </div>
+    </div> -->
   </div>
 
 

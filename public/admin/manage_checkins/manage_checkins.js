@@ -6,7 +6,11 @@ function setToday() {
 
 function getCurrentDate() {
   const today = new Date();
-  return today.toISOString().split("T")[0];
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // Adding 1 to month since it is zero-indexed
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
 
 function loadCheckinRecordsByDay() {

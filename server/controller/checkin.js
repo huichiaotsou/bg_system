@@ -18,15 +18,16 @@ const saveUserCheckin = async (req, res, next) => {
   }
 };
 
-const getUserCheckin = async (req, res, next) => {
+const getGroupCheckin = async (req, res, next) => {
   try {
-    const checkinRequest = {
-      type: req.body.type,
-      userID: req.body.id,
+    const request = {
+      groupID: req.params.groupID,
+      year: req.params.year,
+      month: req.params.month,
     };
 
-    await Checkin.getUserCheckin(checkinRequest);
-    res.status(200).send({ status: "ok" });
+    const checkins = await Checkin.getGroupCheckin(request);
+    res.status(200).send(checkins);
   } catch (err) {
     next(err);
   }
@@ -62,7 +63,7 @@ const updateCheckinVenue = async (req, res, next) => {
 
 module.exports = {
   saveUserCheckin,
-  getUserCheckin,
+  getGroupCheckin,
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,

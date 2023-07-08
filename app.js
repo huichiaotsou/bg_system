@@ -21,7 +21,7 @@ const {
 const { updateAdmins } = require("./server/controller/admin");
 const {
   saveUserCheckin,
-  getUserCheckin,
+  getGroupCheckin,
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,
@@ -81,7 +81,11 @@ app.patch(
   updateValidationStatus
 ); // update checkin validation status
 app.patch("/checkin/venue", verifyIsUser, verifyIsAdmin, updateCheckinVenue); // update checkin venue
-app.get("/checkin/user/:userID", verifyIsUser, getUserCheckin); // Get checkin records by user ID
+app.get(
+  "/checkin/group/:groupID/year/:year/month/:month",
+  verifyIsUser,
+  getGroupCheckin
+); // Get checkin records by user ID
 app.get("/checkin/date/:date", verifyIsUser, getCheckinByDay); // Get checkin records by user ID
 
 // Venue
