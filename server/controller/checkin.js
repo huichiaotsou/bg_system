@@ -61,10 +61,20 @@ const updateCheckinVenue = async (req, res, next) => {
   }
 };
 
+const updateCheckinFeedback = async (req, res, next) => {
+  try {
+    await Checkin.updateCheckinFeedback(req.body.update);
+    res.status(200).send({ status: "ok" });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   saveUserCheckin,
   getGroupCheckin,
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,
+  updateCheckinFeedback,
 };

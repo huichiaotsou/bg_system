@@ -192,6 +192,7 @@ function createSingleCheckinDiv(checkin) {
   feedbackButton.type = "button";
   feedbackButton.setAttribute("data-checkinid", checkin.checkin_id);
   feedbackButton.setAttribute("data-feedback", checkin.feedback);
+  feedbackButton.onclick = updateFeedbackAPI;
   feedbackButton.textContent = "反饋";
 
   // Append the feedbackButton to the feedbackBox div
@@ -209,6 +210,51 @@ function createSingleCheckinDiv(checkin) {
   // Append the recordCard to the records_container
   const recordsContainer = document.getElementById("records_container");
   recordsContainer.appendChild(recordCard);
+}
+
+function updateFeedbackAPI(event) {
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const token = localStorageUser.complete_google_jwt;
+
+  let feedback = event.target.dataset.feedback;
+  const checkinID = event.target.dataset.checkinid;
+
+  let promptString = "";
+  if (feedback != "null") {
+    promptString += `更新反饋：`;
+  }
+  const newFeedback = prompt(promptString, feedback);
+  if (newFeedback.trim().length == 0) {
+    return;
+  }
+  feedback = newFeedback;
+
+  const update = {
+    feedback,
+    checkinID,
+  };
+  fetch("/checkin/feedback", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ update }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to update feedback of checkin");
+      }
+    })
+    .then((data) => {
+      console.log(data);
+      event.target.dataset.feedback = feedback;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function createVenueOpts(venue, checkin) {

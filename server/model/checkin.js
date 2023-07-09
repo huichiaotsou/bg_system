@@ -87,10 +87,22 @@ const updateCheckinVenue = async (update) => {
   }
 };
 
+const updateCheckinFeedback = async (update) => {
+  try {
+    const query = "UPDATE checkins SET feedback = $1 WHERE id = $2";
+
+    const values = [update.feedback, update.checkinID];
+    return await executeQuery(query, values);
+  } catch (err) {
+    console.error("Error while updating checkin feedback:", err);
+  }
+};
+
 module.exports = {
   saveCheckin,
   getGroupCheckin,
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,
+  updateCheckinFeedback,
 };

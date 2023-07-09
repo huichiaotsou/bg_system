@@ -25,6 +25,7 @@ const {
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,
+  updateCheckinFeedback,
 } = require("./server/controller/checkin");
 const { updateVenueDistribution } = require("./server/controller/venue");
 const {
@@ -80,6 +81,12 @@ app.patch(
   verifyIsAdmin,
   updateValidationStatus
 ); // update checkin validation status
+app.patch(
+  "/checkin/feedback",
+  verifyIsUser,
+  verifyIsAdmin,
+  updateCheckinFeedback
+); // update checkin feedback
 app.patch("/checkin/venue", verifyIsUser, verifyIsAdmin, updateCheckinVenue); // update checkin venue
 app.get(
   "/checkin/group/:groupID/year/:year/month/:month",
