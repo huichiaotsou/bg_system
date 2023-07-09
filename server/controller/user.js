@@ -33,17 +33,21 @@ const getRegisteredUser = async (req, res, next) => {
 };
 
 const getUserWithID = async (req, res, next) => {
-  let userID = req.params.userID;
-  let dbUser;
-  if (userID === "undefined") {
-    const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
-    const userDetails = jwt.decode(token);
-    [dbUser] = await User.getUserWithEmail(userDetails.email);
-  } else {
-    [dbUser] = await User.getUserWithID(userID);
+  try {
+    let userID = req.params.userID;
+    let dbUser;
+    if (userID === "undefined") {
+      const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+      const userDetails = jwt.decode(token);
+      [dbUser] = await User.getUserWithEmail(userDetails.email);
+    } else {
+      [dbUser] = await User.getUserWithID(userID);
+    }
+    dbUser.registered = true;
+    res.send(dbUser);
+  } catch (err) {
+    next(err);
   }
-  dbUser.registered = true;
-  res.send(dbUser);
 };
 
 const saveUserDetails = async (req, res, next) => {

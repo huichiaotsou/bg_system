@@ -32,15 +32,11 @@ const getGroupCheckin = async (checkinRequest) => {
       FROM checkins c 
       JOIN users u ON c.user_id = u.id 
       JOIN venues v ON c.venue_id = v.id 
-      WHERE EXTRACT(YEAR FROM c.checkin_date) = $1 
-        AND EXTRACT(MONTH FROM c.checkin_date) = $2 
-        AND c.group_id = $3 
-        ORDER BY c.checkin_date`;
-    const values = [
-      checkinRequest.year,
-      checkinRequest.month,
-      checkinRequest.groupID,
-    ];
+      WHERE c.checkin_date >= CURRENT_DATE - INTERVAL '1 month' * $1 
+        AND c.checkin_date <= CURRENT_DATE 
+        AND c.group_id = $2 
+        ORDER BY c.checkin_date DESC`;
+    const values = [checkinRequest.months, checkinRequest.groupID];
 
     return await executeQuery(query, values);
   } catch (err) {

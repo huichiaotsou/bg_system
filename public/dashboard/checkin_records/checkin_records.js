@@ -2,8 +2,8 @@ function loadCheckinRecordsByGroup() {
   const user = JSON.parse(localStorage.getItem("user"));
   const token = user.complete_google_jwt;
 
-  // TODO: to get year and month from the select list
-  fetch(`/checkin/group/${user.group_id}/year/2023/month/7`, {
+  // Get past 6 months checkin records
+  fetch(`/checkin/group/${user.group_id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -19,6 +19,7 @@ function loadCheckinRecordsByGroup() {
     })
     .then((data) => {
       // Handle the server's response
+      console.log("checkins:", data);
       createCheckinDivs(data);
     })
     .catch((error) => {
@@ -104,60 +105,4 @@ function createSingleCheckinDiv(checkin) {
   recordCard.appendChild(feedbackBox);
 
   document.getElementById("records_container").appendChild(recordCard);
-}
-
-function createMonthOptions() {
-  // 取得當前日期
-  var currentDate = new Date();
-
-  // 建立月份選項的容器元素
-  var monthOptionsContainer = document.createElement("div");
-  monthOptionsContainer.setAttribute("id", "month_options_container");
-  monthOptionsContainer.setAttribute("class", "dropdown-menu");
-  monthOptionsContainer.setAttribute("aria-labelledby", "dropdownMenuButton");
-
-  // 迴圈建立月份選項
-  for (var i = 0; i < 6; i++) {
-    var month = currentDate.getMonth() + 1 - i; // 從當前月份往前推 i 個月
-    var year = currentDate.getFullYear();
-
-    // 如果月份小於 1，表示跨年
-    if (month < 1) {
-      month += 12;
-      year -= 1;
-    }
-
-    // 建立單個月份選項的元素
-    var dropdownItem = document.createElement("a");
-    dropdownItem.setAttribute("class", "dropdown-item");
-    dropdownItem.setAttribute("href", "#");
-    dropdownItem.setAttribute("data-year", year);
-    dropdownItem.setAttribute("data-month", month);
-    dropdownItem.textContent = year + " " + month + "月";
-
-    // 將月份選項元素加入容器元素中
-    monthOptionsContainer.appendChild(dropdownItem);
-  }
-
-  // 建立下拉選單的元素
-  var dropdown = document.createElement("div");
-  dropdown.setAttribute("class", "dropdown");
-
-  // 建立下拉選單按鈕的元素
-  var button = document.createElement("button");
-  button.setAttribute("class", "btn btn-sm btn-outline-dark dropdown-toggle");
-  button.setAttribute("type", "button");
-  button.setAttribute("id", "month");
-  button.setAttribute("data-toggle", "dropdown");
-  button.setAttribute("aria-haspopup", "true");
-  button.setAttribute("aria-expanded", "false");
-  button.textContent = "月份";
-
-  // 將月份選項容器加入下拉選單元素中
-  dropdown.appendChild(button);
-  dropdown.appendChild(monthOptionsContainer);
-
-  // 將下拉選單元素加入月份選擇的容器中
-  var monthSelect = document.getElementById("month_selection");
-  monthSelect.appendChild(dropdown);
 }

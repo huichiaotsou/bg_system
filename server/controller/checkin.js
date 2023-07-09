@@ -18,12 +18,11 @@ const saveUserCheckin = async (req, res, next) => {
   }
 };
 
-const getGroupCheckin = async (req, res, next) => {
+const getSixMonthGroupCheckin = async (req, res, next) => {
   try {
     const request = {
       groupID: req.params.groupID,
-      year: req.params.year,
-      month: req.params.month,
+      months: 6,
     };
 
     const checkins = await Checkin.getGroupCheckin(request);
@@ -72,7 +71,7 @@ const updateCheckinFeedback = async (req, res, next) => {
 
 module.exports = {
   saveUserCheckin,
-  getGroupCheckin,
+  getSixMonthGroupCheckin,
   getCheckinByDay,
   updateValidationStatus,
   updateCheckinVenue,

@@ -1,6 +1,6 @@
 #checkin_record_title {
     height: 5.5vh;
-    margin: -2vh auto -10px;
+    margin: -2vh auto 4vh;
     width: 37%;
     border-bottom: 1px solid rgb(194, 192, 192);
     font-size: 26px;
@@ -9,18 +9,6 @@
     align-items: center;
     justify-content: center;
 }
-
-/* ========== Title Selection Bar ========== */
-#month_selection{
-    display: flex;
-    justify-content: flex-start;
-
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    margin-left: 5%;
-}
-
-/* ========== Title Selection Bar Ends ========== */
 
 
 /* ========== Records Card ========== */
@@ -39,7 +27,7 @@
     justify-content: center;
     padding-left: 7px;
     /* border-bottom: 1px dotted grey; */
-    margin-bottom: 7px;
+    margin-bottom: 1vh;
     height: 2vh;
     color: darkgray
 }
