@@ -1,5 +1,5 @@
 require("dotenv");
-const { SERVER_PORT } = process.env;
+const { config } = require("./config/config");
 const Paths = require("./app_paths");
 
 // ----------------------------------------
@@ -7,7 +7,7 @@ const Paths = require("./app_paths");
 // ----------------------------------------
 const express = require("express");
 const app = express();
-app.listen(SERVER_PORT, () => console.log(`Running on port ${SERVER_PORT}`));
+app.listen(config.port, () => console.log(`Running on port ${config.port}`));
 
 // ----------------------------------------
 //         Controller / Middleware

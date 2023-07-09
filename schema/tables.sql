@@ -48,6 +48,7 @@ CREATE TABLE checkins (
     validation_status   VALIDATION_STATUS   NOT NULL DEFAULT 'pending',
     validated_by        INT                 REFERENCES users(id),
     feedback            TEXT,
+    feedback_by         INT                 REFERENCES users(id),
     UNIQUE(group_id, checkin_date)
 );
 

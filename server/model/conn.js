@@ -1,15 +1,15 @@
 const { Pool } = require("pg");
 require("dotenv");
 
-const { PG_USER, PG_HOST, PG_DB, PG_PWD } = process.env;
+const { config } = require("../../config/config");
 
 // Create a pool instance using your database connection details
 const pool = new Pool({
-  user: PG_USER,
-  host: PG_HOST,
-  database: PG_DB,
-  password: PG_PWD,
-  port: 5432,
+  user: config.database.username,
+  host: config.database.host,
+  database: config.database.name,
+  password: config.database.password,
+  port: config.database.port,
 });
 
 const executeQuery = async (query, values = []) => {
