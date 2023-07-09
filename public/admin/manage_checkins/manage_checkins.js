@@ -223,6 +223,9 @@ function updateFeedbackAPI(event) {
   if (feedback != "null") {
     promptString += `更新反饋：`;
   }
+  if (feedback == "null") {
+    feedback = "";
+  }
   const newFeedback = prompt(promptString, feedback);
   if (newFeedback.trim().length == 0) {
     return;
