@@ -8,8 +8,6 @@ CREATE TABLE belong_groups (
 );
 
 -- Default groups, as of July 12 2023
-INSERT INTO belong_groups (group_leader) VALUES ('子揚 小組');
-INSERT INTO belong_groups (group_leader) VALUES ('揚揚 小組');
 INSERT INTO belong_groups (group_leader) VALUES ('Aaron 小組');
 INSERT INTO belong_groups (group_leader) VALUES ('Alex 小組');
 INSERT INTO belong_groups (group_leader) VALUES ('Amber 小組');
@@ -29,6 +27,9 @@ INSERT INTO belong_groups (group_leader) VALUES ('Oscar 小組');
 INSERT INTO belong_groups (group_leader) VALUES ('Sasa 小組');
 INSERT INTO belong_groups (group_leader) VALUES ('Viola 小組');
 INSERT INTO belong_groups (group_leader) VALUES ('yth');
+INSERT INTO belong_groups (group_leader) VALUES ('子揚 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('揚揚 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('System Default(勿選)');
 
 -- Define the users table to store the user's basic information
 CREATE TABLE users (
