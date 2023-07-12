@@ -53,7 +53,7 @@ const updateValidationStatus = async (req, res, next) => {
 
 const updateCheckinVenue = async (req, res, next) => {
   try {
-    await Checkin.updateCheckinVenue(req.body.update);
+    await Checkin.updateCheckinVenue(req.body.update, req.body.userID);
     res.status(200).send({ status: "ok" });
   } catch (err) {
     next(err);
@@ -62,7 +62,7 @@ const updateCheckinVenue = async (req, res, next) => {
 
 const updateCheckinFeedback = async (req, res, next) => {
   try {
-    await Checkin.updateCheckinFeedback(req.body.update);
+    await Checkin.updateCheckinFeedback(req.body.update, req.body.userID);
     res.status(200).send({ status: "ok" });
   } catch (err) {
     next(err);

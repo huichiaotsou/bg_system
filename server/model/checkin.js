@@ -72,22 +72,24 @@ const updateValidationStatus = async (update) => {
   }
 };
 
-const updateCheckinVenue = async (update) => {
+const updateCheckinVenue = async (update, updatedBy) => {
   try {
-    const query = "UPDATE checkins SET venue_id = $1 WHERE id = $2";
+    const query =
+      "UPDATE checkins SET venue_id = $1, validated_by = $2 WHERE id = $3";
 
-    const values = [update.venueID, update.checkinID];
+    const values = [update.venueID, updatedBy, update.checkinID];
     return await executeQuery(query, values);
   } catch (err) {
     console.error("Error while updating checkin validation status:", err);
   }
 };
 
-const updateCheckinFeedback = async (update) => {
+const updateCheckinFeedback = async (update, feedbackBy) => {
   try {
-    const query = "UPDATE checkins SET feedback = $1 WHERE id = $2";
+    const query =
+      "UPDATE checkins SET feedback = $1, feedback_by = $2 WHERE id = $3";
 
-    const values = [update.feedback, update.checkinID];
+    const values = [update.feedback, feedbackBy, update.checkinID];
     return await executeQuery(query, values);
   } catch (err) {
     console.error("Error while updating checkin feedback:", err);
