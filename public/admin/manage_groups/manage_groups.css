@@ -11,7 +11,8 @@
 }
 
 #groups_container{
-    margin-bottom: 25vh;
+    padding-bottom: 15vh;
+    /* margin-bottom: 20vh; */
 }
 
 .groups_box {

@@ -11,7 +11,7 @@ function addAdminButton() {
   const divElement = document.createElement("div");
   divElement.setAttribute("class", "button");
   divElement.setAttribute("id", "admin_button");
-  divElement.textContent = "管理介面";
+  divElement.textContent = "管理員介面";
   divElement.setAttribute("onclick", "redirect('/admin.html')");
   document.body.appendChild(divElement);
 }
@@ -27,6 +27,6 @@ function addAdminMenuOptions() {
   const adminDashboardLi = document.createElement("li");
   adminDashboardLi.setAttribute("onclick", "redirect('/admin.html')");
   // adminDashboardLi.onclick = ;
-  adminDashboardLi.textContent = "管理介面";
+  adminDashboardLi.textContent = "管理員介面";
   menuList.appendChild(adminDashboardLi);
 }

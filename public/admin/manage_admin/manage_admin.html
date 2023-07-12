@@ -7,8 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body onload="checkLogin(); loadAllUsers()">
-  <div id="header1" onclick="redirect('/admin.html')">Taipei Campus</div>
-  <div id="header2" onclick="redirect('/admin.html')">場地使用紀錄系統</div>
+  
+    <!-- Hamburger Menu -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <section class="top-nav">
+      <div onclick="redirect('/admin.html')">
+        管理員介面
+      </div>
+      <input id="menu-toggle" type="checkbox" />
+      <label class='menu-button-container' for="menu-toggle">
+      <div class='menu-button'></div>
+    </label>
+      <ul class="menu" id="menu_list">
+        <li onclick="redirect('/dashboard.html')">回到使用者主頁</li>
+        <li onclick="redirect('/manage_checkins.html')">審核當日簽到</li>
+        <!-- <li onclick="redirect('/group_checkin_records.html')">簽到歷史紀錄</li> -->
+        <li onclick="redirect('/manage_groups.html')">管理小組清單</li>
+        <li onclick="redirect('/manage_admin.html')">新增管理員</li>
+      </ul>
+    </section> 
+    <!-- Hamburger Menu Ends -->
 
   <div id="current_admin_title">使用者名單</div>
   
