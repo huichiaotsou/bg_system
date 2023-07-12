@@ -22,7 +22,7 @@ function addButtonEventListener() {
 function sendCheckinData() {
   const user = JSON.parse(localStorage.getItem("user"));
   const selectedVenue = document.getElementById("selected_venue");
-  if (selectedVenue == null) {
+  if (selectedVenue.dataset.venueid == null) {
     alert("請選擇場地");
     return;
   }
@@ -47,11 +47,11 @@ function sendCheckinData() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         alert("簽到成功");
-        window.location.href = "/checkin_records.html";
       }
       if (xhr.status === 409) {
         alert("簽到失敗，今日已登記。如欲修改請洽管理員");
       }
+      window.location.href = "/checkin_records.html";
     }
   };
 }
