@@ -10,9 +10,26 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="checkLogin(); loadCheckinRecordsByGroup()">
-  <div id="header1" onclick="redirect('/dashboard.html')">Taipei Campus</div>
-  <div id="header2" onclick="redirect('/dashboard.html')">場地使用紀錄系統</div>
+<body onload="checkLogin(); loadCheckinRecordsByGroup(); addAdminMenuOptions();">
+
+  <!-- Hamburger Menu -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <section class="top-nav">
+    <div onclick="redirect('/dashboard.html')">
+      Taipei Campus
+      場地使用紀錄系統
+    </div>
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+    <div class='menu-button'></div>
+  </label>
+    <ul class="menu" id="menu_list">
+      <li onclick="redirect('/dashboard.html')">回主頁</li>
+      <li onclick="redirect('/checkin.html')">場地使用簽到</li>
+      <li onclick="redirect('/checkin_records.html')">簽到紀錄</li>
+    </ul>
+  </section> 
+  <!-- Hamburger Menu Ends -->
 
   <div id="checkin_record_title">簽到紀錄</div>
 
