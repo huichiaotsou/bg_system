@@ -19,7 +19,6 @@ function loadCheckinRecordsByGroup() {
     })
     .then((data) => {
       // Handle the server's response
-      console.log("checkins:", data);
       createCheckinDivs(data);
     })
     .catch((error) => {
