@@ -1,12 +1,34 @@
 CREATE TABLE belong_groups (
     id              SERIAL          PRIMARY KEY,
     group_leader    VARCHAR(50)     NOT NULL DEFAULT '',
+
+-- leader_type is left null for the moment, will define this col later
+    leader_type     INT             NULL DEFAULT 0,
     UNIQUE(group_leader)
 );
 
--- Default groups
-INSERT INTO belong_groups (group_leader) VALUES ('鄒惠喬 Aaron');
-INSERT INTO belong_groups (group_leader) VALUES ('周德瑄 Dora');
+-- Default groups, as of July 12 2023
+INSERT INTO belong_groups (group_leader) VALUES ('子揚 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('揚揚 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Aaron 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Alex 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Amber 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Bear 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Choir');
+INSERT INTO belong_groups (group_leader) VALUES ('Davien 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Deborah 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Dora 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Elijah 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Esther 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Illyssa 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Julian 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Kanon 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Khrister 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Linus 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Oscar 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Sasa 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('Viola 小組');
+INSERT INTO belong_groups (group_leader) VALUES ('yth');
 
 -- Define the users table to store the user's basic information
 CREATE TABLE users (

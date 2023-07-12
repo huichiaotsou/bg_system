@@ -2,7 +2,6 @@
 //   "367177265116-v2ssukimr0dk8rn4avb4n7iimlmsergl.apps.googleusercontent.com";
 // const { OAuth2Client } = require("google-auth-library");
 // const client = new OAuth2Client(CLIENT_ID);
-const { login } = require("../../app_paths");
 const User = require("../model/user");
 
 const verifyIsUser = async (req, res, next) => {
@@ -31,15 +30,13 @@ const verifyIsUser = async (req, res, next) => {
 };
 
 const verifyIsAdmin = async (req, res, next) => {
-  // const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
-  // const jwt = require("jsonwebtoken");
-  // const user = jwt.decode(token);
-  // const dbUser = User.getUserWithID(user.id);
-  // if (!dbUser.is_admin) {
-  //   res.send(403);
-  //   return;
-  // }
-  // req.body.setterUserID = user.id;
+  const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
+  const jwt = require("jsonwebtoken");
+  const [dbUser] = await User.getUserWithEmail(jwt.decode(token).email);
+  if (!dbUser.is_admin || dbUser.id != 1) {
+    res.sendStatus(403);
+    return;
+  }
   next();
 };
 
