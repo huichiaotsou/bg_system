@@ -1,0 +1,162 @@
+#checkin_record_title {
+    height: 5.5vh;
+    margin: -2vh auto 4vh;
+    width: 37%;
+    border-bottom: 1px solid rgb(194, 192, 192);
+    font-size: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#group_select, option{
+    margin-left: 5%;
+    margin-bottom: 5%;
+    border-radius: 10px;
+    height: 4vh;
+    width: auto;
+}
+
+/* ========== Records Card ========== */
+
+#records_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#record_card_title{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 7px;
+    /* border-bottom: 1px dotted grey; */
+    margin-bottom: 1vh;
+    height: 2vh;
+    color: darkgray
+}
+
+.record_card{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.pending {
+    /* border style */
+    border-left: 7px solid #dac803;
+    color: #E9D502;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.validated {
+    /* border style */
+    border-left: 7px solid #34B233;
+    color: #34B233;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.rejected {
+    /* border style */
+    border-left: 7px solid #a30202;
+    color: #a30202;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.record_box {
+    flex: 95%;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    border-width: 80%;
+    width: 95%;
+    margin: 0 auto 0px;
+}
+
+/* flex proportion */
+
+.validation {
+    flex: 25%;
+    font-size: medium;
+    padding-left: 5px;
+
+    /* align left */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.checkin_date {
+    flex: 10%;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signer {
+    flex: 30%;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.venue {
+    flex: 35%;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== Records Card Ends ========== */
+
+/* ========== Feedback Box ========== */
+
+.feedback_box {
+    flex: 5%;
+    height: 25px;
+    width: 25px;
+    font-size: medium;
+
+    /* center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback_mark {
+    height: 17px;
+    width: 17px;
+    font-size: 15px;
+    background-color: #ffffff;
+    margin-right: 7px;
+    border: 2px solid #a30202;
+    color: #a30202;
+    border-radius: 50%;
+    font-weight: 700;
+
+    padding-top: 1.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+/* ========== Feedback Box Ends ========== */

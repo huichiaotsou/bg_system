@@ -54,6 +54,7 @@ app.use(Paths.admin); // ADMIN
 app.use(Paths.adminManageAdmin); // ADMIN - manage admins
 app.use(Paths.adminManageGroups); // ADMIN - manage groups
 app.use(Paths.adminManageCheckins); // ADMIN - manage groups
+app.use(Paths.adminGroupCheckinRecords); // ADMIN - get all check records by group
 app.use(Paths.adminVenueDistribution); // ADMIN - venue distribution
 
 app.use(Paths.dashboard); // DASHBOARD
@@ -72,9 +73,6 @@ app.patch("/user/:userID", verifyIsUser, verifyIsAdmin); // TODO: update user
 
 // Admin
 app.post("/admin", verifyIsUser, verifyIsAdmin, updateAdmins); // Update a list of users as admin
-
-// Checkin
-app.post("/checkin", verifyIsUser, saveUserCheckin); // User checkin venue usage
 app.patch(
   "/checkin/validation",
   verifyIsUser,
@@ -88,6 +86,9 @@ app.patch(
   updateCheckinFeedback
 ); // update checkin feedback
 app.patch("/checkin/venue", verifyIsUser, verifyIsAdmin, updateCheckinVenue); // update checkin venue
+
+// Checkin
+app.post("/checkin", verifyIsUser, saveUserCheckin); // User checkin venue usage
 app.get("/checkin/group/:groupID", verifyIsUser, getSixMonthGroupCheckin); // Get checkin records by user ID
 app.get("/checkin/date/:date", verifyIsUser, getCheckinByDay); // Get checkin records by user ID
 
