@@ -46,42 +46,24 @@ function loadCheckinRecordsByDay() {
 
 function createTitle() {
   // Create the record_card_title div
-  var recordCardTitle = document.createElement("div");
+  const recordCardTitle = document.createElement("div");
   recordCardTitle.id = "record_card_title";
 
-  // Create the record_box div
-  var recordBox = document.createElement("div");
-  recordBox.className = "record_box";
-
-  // Create the validation div
-  var validation = document.createElement("div");
-  validation.className = "validation";
-  validation.textContent = "審核狀態";
-
-  // Create the group div
-  var group = document.createElement("div");
-  group.className = "group";
-  group.id = "group_title";
-  group.textContent = "小組";
-
-  // Create the venue div
-  var venue = document.createElement("div");
-  venue.className = "venue";
-  venue.id = "venue_title";
-  venue.textContent = "使用場地";
-
-  // Create the feedback_box div
-  var feedbackBox = document.createElement("div");
-  feedbackBox.className = "feedback_box";
-  feedbackBox.textContent = "反饋";
-
-  // Append the child elements to their respective parent elements
-  recordBox.appendChild(validation);
-  recordBox.appendChild(group);
-  recordBox.appendChild(venue);
-  recordBox.appendChild(feedbackBox);
-
-  recordCardTitle.appendChild(recordBox);
+  recordCardTitle.innerHTML = `
+  <div class="record_box">
+    <div class="validation">
+      審核狀態
+    </div>
+    <div class="group" id="group_title">
+      小組
+    </div>
+    <div class="venue" id="venue_title">
+      使用場地
+    </div>
+    <div class="feedback_box">
+      反饋
+    </div>
+  </div>`;
 
   // Append the record_card_title div to the document body or any other desired container
   document.getElementById("records_container").appendChild(recordCardTitle);

@@ -40,7 +40,6 @@ function loadCheckinRecordsByGroup() {
 
       </div>
     </div>`;
-      // createTitle();
       createCheckinDivs(data);
     })
     .catch((error) => {
