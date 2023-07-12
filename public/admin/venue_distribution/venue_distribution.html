@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body onload="checkLogin(); loadWeekday(); loadScheduleOnSelect(); addGroupSlotListener(); ">
-  <div id="header1">Taipei Campus</div>
-  <div id="header2">場地使用紀錄系統</div>
+  <div id="header1" onclick="redirect('/admin.html')">Taipei Campus</div>
+  <div id="header2" onclick="redirect('/admin.html')">場地使用紀錄系統</div>
 
   <select name="weekdays" id="weekdays">
     <option value="Sunday" class="weekday_option"> Sunday </option>
