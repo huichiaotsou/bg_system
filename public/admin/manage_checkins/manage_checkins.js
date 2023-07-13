@@ -199,24 +199,14 @@ function updateFeedbackAPI(event) {
   const token = localStorageUser.complete_google_jwt;
 
   let feedback = event.target.dataset.feedback;
-  const checkinID = event.target.dataset.checkinid;
-
-  let promptString = "";
-  if (feedback != "null") {
-    promptString += `更新反饋：`;
-  }
   if (feedback == "null") {
     feedback = "";
   }
-  const newFeedback = prompt(promptString, feedback);
-  if (newFeedback.trim().length == 0) {
-    return;
-  }
-  feedback = newFeedback;
+  feedback = prompt("", feedback);
 
   const update = {
     feedback,
-    checkinID,
+    checkinID: event.target.dataset.checkinid,
   };
   fetch("/checkin/feedback", {
     method: "PATCH",

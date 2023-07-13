@@ -34,7 +34,6 @@ const verifyIsAdmin = async (req, res, next) => {
   const token = req.headers.authorization.substring(7); // Remove "Bearer " prefix
   const jwt = require("jsonwebtoken");
   const [dbUser] = await User.getUserWithEmail(jwt.decode(token).email);
-  console.log("dbUser: ", dbUser);
 
   if (dbUser.is_admin || dbUser.id == 1) {
     return next();
