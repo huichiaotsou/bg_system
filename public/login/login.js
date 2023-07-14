@@ -24,7 +24,7 @@ function handleCredentialResponse(response) {
       if (!user.registered) {
         window.location.href = "/register.html";
       } else {
-        window.location.href = "/dashboard.html";
+        window.location.href = "/checkin.html";
       }
     })
     .catch((error) => {
