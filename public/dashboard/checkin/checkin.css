@@ -3,6 +3,19 @@
  flex-direction: column;
 }
 
+#checkin_title {
+  height: 5.5vh;
+  margin: -2vh auto 4vh ;
+  width: 42%;
+  border-bottom: 1px solid rgb(194, 192, 192);
+  font-size: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .title_box {
   display: flex;
   margin-bottom: 5px;
