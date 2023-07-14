@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  <link rel="stylesheet" type="text/css" href="/admin/admin.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="checkLogin();">
+
+  <!-- Hamburger Menu -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <section class="top-nav">
+    <div onclick="redirect('/admin.html')">
+      管理員介面
+    </div>
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+    <div class='menu-button'></div>
+  </label>
+    <ul class="menu" id="menu_list">
+      <li onclick="redirect('/dashboard.html')">回到使用者主頁</li>
+      <li onclick="redirect('/manage_checkins.html')">審核簽到</li>
+      <!-- <li onclick="redirect('/group_checkin_records.html')">簽到歷史紀錄</li> -->
+      <li onclick="redirect('/manage_groups.html')">管理小組清單</li>
+      <li onclick="redirect('/manage_admin.html')">新增管理員</li>
+    </ul>
+  </section> 
+  <!-- Hamburger Menu Ends -->
+  
+  
+  <div class="button" onclick="redirect('/manage_checkins.html')">
+    審核簽到
+  </div>
+  <!-- <div class="button" onclick="redirect('/group_checkin_records.html')">
+    簽到歷史紀錄
+  </div> -->
+  <div class="button" onclick="redirect('/manage_groups.html')">
+    管理小組清單
+  </div>
+  <!-- <div class="button" onclick="redirect('/venue_distribution.html'); alert('功能開發中，導向至示範頁面')">
+    場地分配
+  </div> -->
+  <div class="button" onclick="redirect('/manage_admin.html')">
+    新增管理員
+  </div>
+
+</body>
+<script src="/admin/admin.js"></script>
+<script src="/authentication.js"></script>
+
+<script src="/utils.js"></script>
+
+
+</html>

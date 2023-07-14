@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  <link rel="stylesheet" type="text/css" href="/login/login.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div id="header1">Taipei Campus</div>
+  <div id="header2">場地使用紀錄系統</div>
+
+  <div id="login_text"> 請使用 Google 帳號登入系統 </div>
+<!-- GOOGLE SIGN IN -->
+<div id="google-signin-button">
+  <div id="g_id_onload"
+     data-client_id="367177265116-v2ssukimr0dk8rn4avb4n7iimlmsergl.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="touch"
+     data-auto_select="false"
+     data-callback="handleCredentialResponse"
+     data-itp_support="true">
+  </div>
+
+  <div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="outline"
+     data-text="signin_with"
+     data-size="large"
+     data-locale="default"
+     data-logo_alignment="left">
+  </div>
+</div>
+
+<!-- GOOGLE SIGN IN -->
+
+</body>
+<script src="/login/login.js"></script>
+<script src="/utils.js"></script>
+
+</html>

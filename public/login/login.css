@@ -1,0 +1,28 @@
+#login_text{
+  display: flex;
+  justify-content: center;
+  margin-top: 30%;
+}
+
+#google-signin-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    /* height: 60vh; */
+  }
+
+
+
+  body {
+    /* background-image: url(https://thehope.co/wp-content/uploads/2022/09/home_main-1.png)!important;
+    
+    position: relative;
+    background-color: #fff;
+    background-position: 50%;
+    background-size: 520%;
+    background-repeat: no-repeat; */
+
+    background-color: #f1f1f1;
+}

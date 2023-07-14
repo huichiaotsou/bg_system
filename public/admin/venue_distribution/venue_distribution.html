@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Campus 場地使用紀錄系統</title>
+  <link rel="stylesheet" type="text/css" href="/venue_distribution/venue_distribution.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="checkLogin(); loadWeekday(); loadScheduleOnSelect(); addGroupSlotListener(); ">
+
+      <!-- Hamburger Menu -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <section class="top-nav">
+        <div onclick="redirect('/admin.html')">
+          管理員介面
+        </div>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+      </label>
+        <ul class="menu" id="menu_list">
+          <li onclick="redirect('/dashboard.html')">回到使用者主頁</li>
+          <li onclick="redirect('/manage_checkins.html')">審核簽到</li>
+          <li onclick="redirect('/admin.html')">回到管理員介面</li>
+          <!-- <li onclick="redirect('/group_checkin_records.html')">簽到歷史紀錄</li> -->
+          <li onclick="redirect('/manage_groups.html')">管理小組清單</li>
+          <li onclick="redirect('/manage_admin.html')">新增管理員</li>
+        </ul>
+      </section> 
+      <!-- Hamburger Menu Ends -->
+  
+
+  <select name="weekdays" id="weekdays">
+    <option value="Sunday" class="weekday_option"> Sunday </option>
+    <option value="Monday" class="weekday_option"> Monday </option>
+    <option value="Tuesday" class="weekday_option"> Tuesday </option>
+    <option value="Wednesday" class="weekday_option"> Wednesday </option>
+    <option value="Thursday" class="weekday_option"> Thursday </option>
+    <option value="Friday" class="weekday_option"> Friday </option>
+    <option value="Saturday" class="weekday_option"> Saturday </option>
+  </select>
+
+  <div class="venue_container">
+    <div class="venue_box"> Living Room </div>
+    <div class="time_box">
+      <div class="time_option"> 6:00-7:30 </div>
+      <div class="time_option"> 7:30-9:30 </div>
+    </div>
+    <div class="group_box">
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group A </option>
+      </select>
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group B </option>
+      </select>
+    </div>
+  </div>
+  <div class="venue_container">
+    <div class="venue_box"> Glassroom </div>
+    <div class="time_box">
+      <div class="time_option"> 6:00-7:30 </div>
+      <div class="time_option"> 7:30-9:30 </div>
+    </div>
+    <div class="group_box">
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group A </option>
+      </select>
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group B </option>
+      </select>
+    </div>
+  </div>
+  <div class="venue_container">
+    <div class="venue_box"> eHQ </div>
+    <div class="time_box">
+      <div class="time_option"> 6:00-7:30 </div>
+      <div class="time_option"> 7:30-9:30 </div>
+    </div>
+    <div class="group_box">
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group A </option>
+      </select>
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group B </option>
+      </select>
+    </div>
+  </div>
+  <div class="venue_container">
+    <div class="venue_box"> Kids Central </div>
+    <div class="time_box">
+      <div class="time_option"> 6:00-7:30 </div>
+      <div class="time_option"> 7:30-9:30 </div>
+    </div>
+    <div class="group_box">
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group A </option>
+      </select>
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group B </option>
+      </select>
+    </div>
+  </div>
+  <div class="venue_container">
+    <div class="venue_box"> Gather </div>
+    <div class="time_box">
+      <div class="time_option"> 6:00-7:30 </div>
+      <div class="time_option"> 7:30-9:30 </div>
+    </div>
+    <div class="group_box">
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group A </option>
+      </select>
+      <select name="group_option" class="group_option">>
+        <option value="" class="groups"> group B </option>
+      </select>
+    </div>
+  </div>
+
+
+
+
+
+</body>
+<script src="/venue_distribution/venue_distribution.js"></script>
+<script src="/authentication.js"></script>
+
+<script src="/utils.js"></script>
+
+
+</html>
