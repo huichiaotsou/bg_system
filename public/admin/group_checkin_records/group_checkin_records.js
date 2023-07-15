@@ -19,112 +19,27 @@ function loadCheckinRecordsByGroup() {
       }
     })
     .then((data) => {
-      // Handle the server's response
-      const recordsContainer = document.getElementById("records_container");
-      recordsContainer.innerHTML = `    <div id="record_card_title">
-      <div class="record_box">
-        <div class="validation">
-          簽到狀態
-        </div>
-        <div class="checkin_date">
-          日期
-        </div>
-        <div class="signer">
-          簽到人
-        </div>
-        <div class="venue">
-          使用場地
-        </div>
-      </div>
-      <div class="feedback_box">
-
-      </div>
-    </div>`;
-      createCheckinDivs(data);
+      console.log(data);
+      for (let record of data) {
+        const date = new Date(record.checkin_date);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1);
+        const day = String(date.getDate()).padStart(2, "0");
+        const dateID = "" + year + month + +day;
+        const dateDiv = document.getElementById(dateID);
+        if (record.validation_status == "validated") {
+          dateDiv.style =
+            "color: green; font-size: bolder; border-bottom: 1px solid green; ";
+        }
+        // if (record.validation_status == "rejected") {
+        //   dateDiv.style =
+        //     "color: red; font-size: bolder; border-bottom: 1px solid red; ";
+        // }
+      }
     })
     .catch((error) => {
       console.error(error);
     });
-}
-
-function createCheckinDivs(checkins) {
-  for (let i = 0; i < checkins.length; i++) {
-    createSingleCheckinDiv(checkins[i]);
-  }
-}
-
-function createSingleCheckinDiv(checkin) {
-  // Create the record_card div element
-  const recordCard = document.createElement("div");
-  recordCard.className = "record_card";
-
-  // Create the record_box div element
-  const recordBox = document.createElement("div");
-  recordBox.className = "record_box";
-
-  // Create the validation div element
-  const validation = document.createElement("div");
-  switch (checkin.validation_status) {
-    case "pending":
-      validation.className = "validation pending";
-      validation.textContent = "審核中";
-      break;
-    case "validated":
-      validation.className = "validation validated";
-      validation.textContent = "簽到成功";
-      break;
-    case "rejected":
-      validation.className = "validation rejected";
-      validation.textContent = "簽到失敗";
-      break;
-    default:
-      validation.className = "validation pending";
-      validation.textContent = "審核中";
-      break;
-  }
-
-  // Create the checkin_date div element
-  const checkinDate = document.createElement("div");
-  checkinDate.className = "checkin_date";
-  const dateTime = new Date(checkin.checkin_date);
-  checkinDate.textContent = `${dateTime.getMonth() + 1}/${dateTime.getDate()}`;
-
-  // Create the signer div element
-  const signer = document.createElement("div");
-  signer.className = "signer";
-  signer.textContent = checkin.user_name;
-
-  // Create the venue div element
-  const venue = document.createElement("div");
-  venue.className = "venue";
-  venue.textContent = checkin.venue_name;
-
-  // Append the validation, checkin_date, signer, and venue elements to the record_box div
-  recordBox.appendChild(validation);
-  recordBox.appendChild(checkinDate);
-  recordBox.appendChild(signer);
-  recordBox.appendChild(venue);
-
-  // Create the feedback_box div element
-  const feedbackBox = document.createElement("div");
-  feedbackBox.className = "feedback_box";
-
-  if (checkin.feedback) {
-    // Create the feedback_mark div element
-    const feedbackMark = document.createElement("div");
-    feedbackMark.className = "feedback_mark";
-    feedbackMark.textContent = "!";
-    feedbackMark.onclick = function () {
-      alert(checkin.feedback);
-    };
-    feedbackBox.appendChild(feedbackMark);
-  }
-
-  // Append the record_box and feedback_box elements to the record_card div
-  recordCard.appendChild(recordBox);
-  recordCard.appendChild(feedbackBox);
-
-  document.getElementById("records_container").appendChild(recordCard);
 }
 
 function loadAllGroups() {
@@ -171,9 +86,6 @@ function createSingleGroupOption(group) {
 }
 
 function createMonth(year, month) {
-  // Figure out which 1st day of this month falls on which weekday
-  let momthFirstDay = new Date(year, month, 1).getDay();
-
   // Create Month Container
   const monthContainer = document.createElement("div");
   monthContainer.setAttribute("class", "month_container");
@@ -189,35 +101,55 @@ function createMonth(year, month) {
     <div class="day6">Sat</div>
   </div>`;
 
-  let firstDay = 1;
+  // Figure out which 1st day of this month falls on which weekday
+  let momthFirstDay = new Date(year, month, 1).getDay();
+
+  // We need to set the start date sunday
+  let startDate = -(momthFirstDay - 1);
   for (let week = 1; week <= getWeeksInMonth(year, month); week++) {
-    monthContainer.innerHTML += createWeek(momthFirstDay, firstDay);
-    firstDay += 7;
+    monthContainer.innerHTML += createWeek(startDate, year, month);
+    startDate += 7;
   }
 
   const calendarContainer = document.getElementById("calendar_container");
   calendarContainer.appendChild(monthContainer);
 }
 
-function createCalendar() {
-  const currYear = new Date().getFullYear();
-  const currMonth = new Date().getMonth();
-  createMonth(currYear, currMonth);
+function getLastDayOfMonth(year, month) {
+  // Set the date to the following month's first day
+  var nextMonth = new Date(year, month + 1, 1);
+  // Subtract one day to get the last day of the desired month
+  var lastDay = new Date(nextMonth - 1);
+  // Return the day component of the last day
+  return lastDay.getDate();
 }
 
-function createWeek(startWeekDay, startDate) {
+async function createCalendar() {
+  let currYear = new Date().getFullYear();
+  let currMonth = new Date().getMonth();
+  for (let i = 0; i < 6; i++) {
+    createMonth(currYear, currMonth);
+    currMonth -= 1;
+    if (currMonth == 0) {
+      currYear -= 1;
+      currMonth = 12;
+    }
+  }
+}
+
+function createWeek(startDate, year, month) {
+  const lastDate = getLastDayOfMonth(year, month);
+
   let html = `<div class="week">`;
   for (let i = 0; i <= 6; i++) {
-    if (startWeekDay == i) {
-      html += ` <div class="day${i}">${startDate}</div>`;
-      startWeekDay++;
-      startDate++;
-      if (startWeekDay == 7) {
-        startWeekDay == 0;
-      }
+    const dateID = `${year}${month + 1}${startDate}`;
+
+    if (startDate > 0 && startDate <= lastDate) {
+      html += ` <div class="day${i}" id="${dateID}">${startDate}</div>`;
     } else {
-      html += ` <div class="day${i}"> </div>`;
+      html += ` <div class="day${i}"></div>`;
     }
+    startDate++;
   }
   return html;
 }
