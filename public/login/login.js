@@ -24,6 +24,10 @@ function handleCredentialResponse(response) {
       if (!user.registered) {
         window.location.href = "/register.html";
       } else {
+        if (user.is_admin) {
+          window.location.href = "/manage_checkins.html";
+          return;
+        }
         window.location.href = "/checkin.html";
       }
     })
