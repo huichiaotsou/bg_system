@@ -169,3 +169,72 @@ function createSingleGroupOption(group) {
   const groupSelect = document.getElementById("group_select");
   groupSelect.appendChild(option);
 }
+
+function createMonth(year, month) {
+  // Figure out which 1st day of this month falls on which weekday
+  let momthFirstDay = new Date(year, month, 1).getDay();
+
+  // Create Month Container
+  const monthContainer = document.createElement("div");
+  monthContainer.setAttribute("class", "month_container");
+  monthContainer.innerHTML = `
+  <h4>${month + 1}月</h4>
+  <div class="week_title">
+    <div class="day0">Sun</div>
+    <div class="day1">Mon</div>
+    <div class="day2">Tue</div>
+    <div class="day3">Wed</div>
+    <div class="day4">Thu</div>
+    <div class="day5">Fri</div>
+    <div class="day6">Sat</div>
+  </div>`;
+
+  let firstDay = 1;
+  for (let week = 1; week <= getWeeksInMonth(year, month); week++) {
+    monthContainer.innerHTML += createWeek(momthFirstDay, firstDay);
+    firstDay += 7;
+  }
+
+  const calendarContainer = document.getElementById("calendar_container");
+  calendarContainer.appendChild(monthContainer);
+}
+
+function createCalendar() {
+  const currYear = new Date().getFullYear();
+  const currMonth = new Date().getMonth();
+  createMonth(currYear, currMonth);
+}
+
+function createWeek(startWeekDay, startDate) {
+  let html = `<div class="week">`;
+  for (let i = 0; i <= 6; i++) {
+    if (startWeekDay == i) {
+      html += ` <div class="day${i}">${startDate}</div>`;
+      startWeekDay++;
+      startDate++;
+      if (startWeekDay == 7) {
+        startWeekDay == 0;
+      }
+    } else {
+      html += ` <div class="day${i}"> </div>`;
+    }
+  }
+  return html;
+}
+
+function getWeeksInMonth(year, month) {
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month + 1, 0);
+
+  const startWeek = getWeekNumber(firstDayOfMonth);
+  const endWeek = getWeekNumber(lastDayOfMonth);
+
+  return endWeek - startWeek + 1;
+}
+
+function getWeekNumber(date) {
+  const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+  const millisecondsInDay = 24 * 60 * 60 * 1000;
+  const diff = (date - firstDayOfYear) / millisecondsInDay;
+  return Math.floor(diff / 7) + 1;
+}
