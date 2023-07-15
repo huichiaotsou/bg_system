@@ -19,22 +19,18 @@ function loadCheckinRecordsByGroup() {
       }
     })
     .then((data) => {
-      console.log(data);
+      document.getElementById("calendar_container").innerHTML = "";
+      createCalendar();
       for (let record of data) {
         const date = new Date(record.checkin_date);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1);
         const day = String(date.getDate()).padStart(2, "0");
-        const dateID = "" + year + month + +day;
-        const dateDiv = document.getElementById(dateID);
+        const dateDiv = document.getElementById("" + year + month + +day);
         if (record.validation_status == "validated") {
           dateDiv.style =
-            "color: green; font-size: bolder; border-bottom: 1px solid green; ";
+            "color: green; font-weight: 700; border-bottom: 2px solid green;";
         }
-        // if (record.validation_status == "rejected") {
-        //   dateDiv.style =
-        //     "color: red; font-size: bolder; border-bottom: 1px solid red; ";
-        // }
       }
     })
     .catch((error) => {
@@ -85,6 +81,19 @@ function createSingleGroupOption(group) {
   groupSelect.appendChild(option);
 }
 
+async function createCalendar() {
+  let currYear = new Date().getFullYear();
+  let currMonth = new Date().getMonth();
+  for (let i = 0; i < 6; i++) {
+    createMonth(currYear, currMonth);
+    currMonth -= 1;
+    if (currMonth == 0) {
+      currYear -= 1;
+      currMonth = 12;
+    }
+  }
+}
+
 function createMonth(year, month) {
   // Create Month Container
   const monthContainer = document.createElement("div");
@@ -115,28 +124,6 @@ function createMonth(year, month) {
   calendarContainer.appendChild(monthContainer);
 }
 
-function getLastDayOfMonth(year, month) {
-  // Set the date to the following month's first day
-  var nextMonth = new Date(year, month + 1, 1);
-  // Subtract one day to get the last day of the desired month
-  var lastDay = new Date(nextMonth - 1);
-  // Return the day component of the last day
-  return lastDay.getDate();
-}
-
-async function createCalendar() {
-  let currYear = new Date().getFullYear();
-  let currMonth = new Date().getMonth();
-  for (let i = 0; i < 6; i++) {
-    createMonth(currYear, currMonth);
-    currMonth -= 1;
-    if (currMonth == 0) {
-      currYear -= 1;
-      currMonth = 12;
-    }
-  }
-}
-
 function createWeek(startDate, year, month) {
   const lastDate = getLastDayOfMonth(year, month);
 
@@ -152,6 +139,15 @@ function createWeek(startDate, year, month) {
     startDate++;
   }
   return html;
+}
+
+function getLastDayOfMonth(year, month) {
+  // Set the date to the following month's first day
+  var nextMonth = new Date(year, month + 1, 1);
+  // Subtract one day to get the last day of the desired month
+  var lastDay = new Date(nextMonth - 1);
+  // Return the day component of the last day
+  return lastDay.getDate();
 }
 
 function getWeeksInMonth(year, month) {
